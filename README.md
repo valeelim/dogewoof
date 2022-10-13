@@ -30,8 +30,8 @@ Modul yang menampilkan spesifikasi anjing beserta artikelnya apabila user memili
 ### Modul Marketplace anjing
 Modul yang berisi berbagai anjing yang akan dijual.
 
-Modul Marketplace Peralatan
+### Modul Marketplace Peralatan
 Modul yang berisi berbagai peralatan anjing yang akan dijual.
 
-Modul Forum
+### Modul Forum
 Modul yang berisi forum diskusi sesama penjual untuk saling berbagi informasi mengenai produk anjing yang dijual.
