@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>DogeWoof</title>
+{% endblock meta %}
+
+
+{% block content %}
+<header>
+    <figure class="d-flex justify-content-center align-items-center">
+        <div class="headline text-center mx-3">
+            <div class="headline1">
+                Find Your Loyal Companion Here
+            </div>
+            <div class="headline2">
+                or give them a
+                <img src="{% static 'images/bone.svg' %}" alt="">
+            </div>
+        </div>
+    </figure>
+    {% include 'partials/navbar.html' %}
+</header>
+<section class="d-flex justify-content-center align-items-center"
+    style="height: 30vh; width: 100%; background-color: rgb(var(--dark-gray))">
+    <div class="navbox">
+        <div class="navbox-item">
+            <img src="{% static 'images/navbox/dog-muted.svg' %}" alt="">
+        </div>
+        <div class="navbox-item">
+            <img src="{% static 'images/navbox/food-muted.svg' %}" alt="">
+        </div>
+        <div class="navbox-item">
+            C
+        </div>
+    </div>
+</section>
+<section class="popular-breeds">
+
+</section>
+<section class="popular-items">
+
+</section>
+<footer>
+
+</footer>
+
+<style>
+    header {
+        width: 100%;
+        height: 100vh;
+    }
+
+    figure {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-image: url("{% static 'images/homepage.jpg' %}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center bottom;
+    }
+
+    .headline {
+        position: relative;
+        max-width: 1000px;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .headline1 {
+        font-size: 4em;
+        font-weight: 700;
+        color: rgb(var(--dark-gray))
+    }
+
+    .headline2 {
+        background-color: rgb(var(--orange));
+        border: none;
+        color: white;
+        text-align: center;
+        display: inline-block;
+        cursor: pointer;
+        border-radius: 10px;
+        padding: 10px 30px;
+        font-weight: 600;
+        font-size: 2em;
+    }
+
+    .headline2:hover img {
+        transform: rotate(45deg);
+        transition: transform .2s ease-in-out;
+    }
+
+    .navbox {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 700px;
+        cursor: pointer;
+    }
+
+    .navbox-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        height: 200px;
+        border: 2px solid;
+        border-radius: 10px;
+        border-color: rgba(255, 255, 255, .2);
+        background-color: transparent;
+        color: white;
+        padding: 15px;
+    }
+
+    .navbox-item:hover {
+        background-color: rgb(var(--orange));
+    }
+
+    @media (max-width: 694px) {
+        .headline1 {
+            font-size: 3em;
+            top: -100px
+        }
+    }
+</style>
+
+<script>
+    gsap.registerPlugin(ScrollTrigger)
+
+    gsap.fromTo($('.headline')[0], {
+        opacity: 0,
+        yPercent: 200
+    }, {
+        opacity: 1,
+        yPercent: 0,
+        duration: 1.5,
+        scrollTrigger: {
+            trigger: $('figure'),
+            start: '45% center',
+        }
+    })
+
+    $('.navbox-item:nth-child(1)').hover(function() {
+        $(this).children('img').attr('src', "{% static 'images/navbox/dog-unmuted.svg' %}")
+    })
+    $('.navbox-item:nth-child(1)').mouseleave(function() {
+        $(this).children('img').attr('src', "{% static 'images/navbox/dog-muted.svg' %}")
+    })
+    $('.navbox-item:nth-child(2)').hover(function() {
+        $(this).children('img').attr('src', "{% static 'images/navbox/food-unmuted.svg' %}")
+    })
+    $('.navbox-item:nth-child(2)').mouseleave(function() {
+        $(this).children('img').attr('src', "{% static 'images/navbox/food-muted.svg' %}")
+    })
+    $('.navbox-item:nth-child(3)').hover(function() {
+        $(this).children('img').attr('src', "{% static 'images/navbox/dog-unmuted.svg' %}")
+    })
+    $('.navbox-item:nth-child(3)').mouseleave(function() {
+        $(this).children('img').attr('src', "{% static 'images/navbox/dog-muted.svg' %}")
+    })
+
+
+</script>
+{% endblock content %}
