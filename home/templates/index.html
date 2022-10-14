@@ -13,7 +13,7 @@
             <div class="headline1">
                 Find Your Loyal Companion Here
             </div>
-            <div class="headline2">
+            <div class="headline2 mt-1">
                 or give them a
                 <img src="{% static 'images/bone.svg' %}" alt="">
             </div>
@@ -22,23 +22,64 @@
     {% include 'partials/navbar.html' %}
 </header>
 <section class="d-flex justify-content-center align-items-center"
-    style="height: 30vh; width: 100%; background-color: rgb(var(--dark-gray))">
-    <div class="navbox">
-        <div class="navbox-item">
-            <img src="{% static 'images/navbox/dog-muted.svg' %}" alt="">
-        </div>
-        <div class="navbox-item">
-            <img src="{% static 'images/navbox/food-muted.svg' %}" alt="">
-        </div>
-        <div class="navbox-item">
+color: white;
+    style="width: 100%; background-color: rgb(var(--dark-gray))">
+    <div class="my-5 navbox d-flex justify-content-between align-items-center flex-wrap">
+        <a class="navbox-item" href="#popular-breeds">
+            <img src="{% static 'images/navbox/dog-muted.svg' %}" alt="" style="transform: scale(.8)">
+            <span class="pb-4">Popular Breeds</span>
+        </a>
+        <a class="navbox-item" href="">
+            <img src="{% static 'images/navbox/food-muted.svg' %}" alt="" style="transform: scale(.8)">
+            <span class="pb-4">Popular Items</span>
+        </a>
+        <a class="navbox-item" href="">
             C
+        </a>
+    </div>
+</section>
+<section id="popular-breeds" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="mt-5" style="font-size: 3em">
+        <span class="text-align">
+            POPULAR <strong>BREEDS</strong>
+        </span>
+    </div>
+    <div id="breed-grid" class="d-flex justify-content-around flex-wrap align-items-center mt-5" style="max-width: 1000px">
+        <div class="c-breed m-2">
+            <img src="{% static 'images/dogs/husky.svg' %}" alt="" style="transform: scale(.6)">
+            <span class="mb-4 pb-3">Husky</span>
+        </div>
+        <div class="c-breed m-2">
+            <img src="{% static 'images/dogs/bulldog.svg' %}" alt="" style="transform: scale(.6)">
+            <span class="mb-4 pb-3">Bulldog</span>
+        </div>
+        <div class="c-breed m-2">
+            <img src="{% static 'images/dogs/germanshepherd.svg' %}" alt="" style="transform: scale(.6)">
+            <span class="mb-4 pb-3">German Shepherd</span>
+        </div>
+        <div class="c-breed m-2">
+            <img src="{% static 'images/dogs/poodle.svg' %}" alt="" style="transform: scale(.6)">
+            <span class="mb-4 pb-3">Poodles</span>
+        </div>
+        <div class="c-breed m-2">
+            <img src="{% static 'images/dogs/shihtzu.svg' %}" alt="" style="transform: scale(.6)">
+            <span class="mb-4 pb-3">Shih Tzu</span>
+        </div>
+        <div class="c-breed m-2">
+            <img src="{% static 'images/dogs/pom.svg' %}" alt="" style="transform: scale(.6)">
+            <span class="mb-4 pb-3">Pomeranians</span>
+        </div>
+        <div class="c-breed m-2">
+            <img src="{% static 'images/dogs/chihuahua.svg' %}" alt="" style="transform: scale(.6)">
+            <span class="mb-4 pb-3">Chihuahua</span>
+        </div>
+        <div class="c-breed m-2">
+            <img src="{% static 'images/dogs/chowchow.svg' %}" alt="" style="transform: scale(.6)">
+            <span class="mb-4 pb-3">Chow Chow</span>
         </div>
     </div>
 </section>
-<section class="popular-breeds">
-
-</section>
-<section class="popular-items">
+<section id="popular-items">
 
 </section>
 <footer>
@@ -70,10 +111,12 @@
     .headline1 {
         font-size: 4em;
         font-weight: 700;
+        color: white;
         color: rgb(var(--dark-gray))
     }
 
     .headline2 {
+        color: white;
         background-color: rgb(var(--orange));
         border: none;
         color: white;
@@ -85,7 +128,10 @@
         font-weight: 600;
         font-size: 2em;
     }
-
+    .headline2:hover {
+        transform: scale(1.05);
+        transition: transform .2s ease-in-out;
+    }
     .headline2:hover img {
         transform: rotate(45deg);
         transition: transform .2s ease-in-out;
@@ -103,6 +149,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         width: 200px;
         height: 200px;
         border: 2px solid;
@@ -111,16 +158,59 @@
         background-color: transparent;
         color: white;
         padding: 15px;
+        text-decoration: none;
+        font-weight: 600;
+        color: rgba(255, 255, 255, .6);
+    }
+    .navbox-item:hover {
+        color: white;
+        background-color: rgb(var(--orange));
+    }
+    .navbox-item:hover img {
+        filter: brightness(300%) !important;
     }
 
-    .navbox-item:hover {
-        background-color: rgb(var(--orange));
+    .basic-grid {
+        width: 100%;
+        max-width: 1000px;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .c-breed {
+        height: 200px;
+        width: 200px;
+        color: black;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 600;
+    }
+    .c-breed:hover {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    footer {
+        height: 30vh;
     }
 
     @media (max-width: 694px) {
         .headline1 {
             font-size: 3em;
             top: -100px
+        }
+
+        .navbox {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbox .navbox-item:nth-child(2) {
+            margin: 1rem 0;
         }
     }
 </style>
@@ -141,25 +231,37 @@
         }
     })
 
-    $('.navbox-item:nth-child(1)').hover(function() {
-        $(this).children('img').attr('src', "{% static 'images/navbox/dog-unmuted.svg' %}")
-    })
-    $('.navbox-item:nth-child(1)').mouseleave(function() {
-        $(this).children('img').attr('src', "{% static 'images/navbox/dog-muted.svg' %}")
-    })
-    $('.navbox-item:nth-child(2)').hover(function() {
-        $(this).children('img').attr('src', "{% static 'images/navbox/food-unmuted.svg' %}")
-    })
-    $('.navbox-item:nth-child(2)').mouseleave(function() {
-        $(this).children('img').attr('src', "{% static 'images/navbox/food-muted.svg' %}")
-    })
-    $('.navbox-item:nth-child(3)').hover(function() {
-        $(this).children('img').attr('src', "{% static 'images/navbox/dog-unmuted.svg' %}")
-    })
-    $('.navbox-item:nth-child(3)').mouseleave(function() {
-        $(this).children('img').attr('src', "{% static 'images/navbox/dog-muted.svg' %}")
+    gsap.fromTo('.navbox-item', {
+        opacity: 0,
+        xPercent: -50
+    }, {
+        opacity: 1,
+        xPercent: 0,
+        duration: .3,
+        stagger: {
+            each: .2
+        },
+        scrollTrigger: {
+            start: 'top bottom',
+            trigger: $('.navbox'),
+            toggleActions: "restart reverse restart reverse"
+        }
     })
 
-
+    gsap.fromTo('.c-breed', {
+        opacity: 0,
+        yPercent: -25
+    }, {
+        opacity: 1,
+        yPercent: 0,
+        stagger: {
+            each: .05
+        },
+        scrollTrigger: {
+            start: 'top center',
+            trigger: $('#breed-grid'),
+            toggleActions: "restart reverse restart reverse"
+        }
+    })
 </script>
 {% endblock content %}
