@@ -21,8 +21,7 @@
     </figure>
     {% include 'partials/navbar.html' %}
 </header>
-<section class="d-flex justify-content-center align-items-center"
-color: white;
+<section class="d-flex justify-content-center align-items-center" color: white;
     style="width: 100%; background-color: rgb(var(--dark-gray))">
     <div class="my-5 navbox d-flex justify-content-between align-items-center flex-wrap">
         <a class="navbox-item" href="#popular-breeds">
@@ -44,7 +43,8 @@ color: white;
             POPULAR <strong>BREEDS</strong>
         </span>
     </div>
-    <div id="breed-grid" class="d-flex justify-content-around flex-wrap align-items-center mt-5" style="max-width: 1000px">
+    <div id="breed-grid" class="d-flex justify-content-around flex-wrap align-items-center mt-5"
+        style="max-width: 1000px">
         <div class="c-breed m-2">
             <img src="{% static 'images/dogs/husky.svg' %}" alt="" style="transform: scale(.6)">
             <span class="mb-4 pb-3">Husky</span>
@@ -128,10 +128,12 @@ color: white;
         font-weight: 600;
         font-size: 2em;
     }
+
     .headline2:hover {
         transform: scale(1.05);
         transition: transform .2s ease-in-out;
     }
+
     .headline2:hover img {
         transform: rotate(45deg);
         transition: transform .2s ease-in-out;
@@ -162,10 +164,12 @@ color: white;
         font-weight: 600;
         color: rgba(255, 255, 255, .6);
     }
+
     .navbox-item:hover {
         color: white;
         background-color: rgb(var(--orange));
     }
+
     .navbox-item:hover img {
         filter: brightness(300%) !important;
     }
@@ -190,6 +194,7 @@ color: white;
         cursor: pointer;
         font-weight: 600;
     }
+
     .c-breed:hover {
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
