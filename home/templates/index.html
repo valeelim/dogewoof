@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load humanize %}
 
 {% block meta %}
 <title>DogeWoof</title>
@@ -49,8 +48,7 @@
             POPULAR <strong>BREEDS</strong>
         </span>
     </div>
-    <div id='breed-grid' class="d-flex justify-content-around flex-wrap align-items-center mt-5"
-        style="max-width: 1000px">
+    <div id='breed-grid' class="d-flex justify-content-around flex-wrap align-items-center mt-5" style="max-width: 1000px">
         <div class="c-breed m-2">
             <img src="{% static 'images/homepage/dogs/husky.svg' %}" alt="" style="transform: scale(.6)">
             <span class="mb-4 pb-3">Husky</span>
@@ -95,8 +93,7 @@
             FEATURED <strong>ITEMS</strong>
         </span>
     </div>
-    <div id='featured-grid' class="d-flex justify-content-around flex-wrap align-items-center my-5"
-        style="max-width: 1200px">
+    <div id='featured-grid' class="d-flex justify-content-around flex-wrap align-items-center my-5" style="max-width: 1200px">
         <div class="f-item card m-3" style="width: 250px;">
             <img src="{% static 'images/homepage/dummy.jpg' %}" class="card-img-top" alt="...">
             <div class="card-body">
@@ -131,67 +128,35 @@
     </button>
 </section>
 
-<section id="donation" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="mt-5" style="font-size: 3em">
-        <span class="text-align">
-            LEND A <strong>HELPING HAND</strong>
-        </span>
-    </div>
-    <article class="card p-5 mt-4 d-flex flex-column align-items-center justify-content-center">
-        <h1>Donation Received</h1>
-        <div id="total-donation">
-            <h1>
-                Rp<strong>{{ total_donation|intcomma }}</strong>
-            </h1>
-        </div>
-        <hr style="margin: 3px; border-top: 2px solid white" class="w-100">
-        <div>
-            <form id='donation-form' action="{% url 'home:make_donation' %}" method="post" class="d-flex flex-column align-items-center justify-content-center">
-                {% csrf_token %}
-                <fieldset>
-                    <div>
-                        {{ form }}
+<section id="contact-us" class="">
+    <div class="d-flex justify-content-center align-items-center" style="padding-top: 10rem">
+        <div class="card mb-3 w-75" style="border: none">
+            <h1 class="card-title mb-5 text-center" style="font-weight: bold">HAVE A QUESTION ?</h1>
+            <div class="row g-0">
+                <div class="col-lg-6 d-flex align-items-center">
+                    <img src="{% static 'images/homepage/mail.jpg' %}" class="img-fluid rounded-start"
+                        style="object-fit: cover;">
+                </div>
+                <div class="form-group col-lg-6">
+                    <div class="card-body">
+                        <form id='contact-form' method="POST" action="{% url 'home:contact_us' %}">
+                            {% csrf_token %}
+                            <fieldset>
+                                <div class="mb-3 input-group-x">
+                                    <label for="subject" class="form-label" style="font-weight: 600">Subject </label>
+                                    <input class="form-control" type="text" name="subject"
+                                        placeholder="I'd love to treat you">
+                                </div>
+                                <div class="mb-3 input-group-x">
+                                    <label for="description" class="form-label" style="font-weight: 600">Description
+                                    </label>
+                                    <textarea class="form-control" rows="5" name="description"
+                                        placeholder="Not too expensive though :D"></textarea>
+                                </div>
+                                <button class="btn btn-lg mt-2 w-100" type="submit">SEND MESSAGE</button>
+                            </fieldset>
+                        </form>
                     </div>
-                    <button class='navButton mt-3' type="submit">
-                        {% if user.is_authenticated %}
-                        MAKE A DIFFERENCE
-                        {% else %}
-                        LOGIN FIRST
-                        {% endif %}
-                    </button>
-                </fieldset>
-            </form>
-        </div>
-    </article>
-</section>
-
-<section id="contact-us" class="d-flex justify-content-center align-items-center mt-5 pt-5">
-    <div class="card mb-3 w-75" style="border: none">
-        <h1 class="card-title mb-5 text-center" style="font-weight: bold">HAVE A QUESTION ?</h1>
-        <div class="row g-0">
-            <div class="col-lg-6 d-flex align-items-center">
-                <img src="{% static 'images/homepage/mail.jpg' %}" class="img-fluid rounded-start"
-                    style="object-fit: cover;">
-            </div>
-            <div class="form-group col-lg-6">
-                <div class="card-body">
-                    <form id='contact-form' method="POST" action="{% url 'home:contact_us' %}">
-                        {% csrf_token %}
-                        <fieldset>
-                            <div class="mb-3 input-group-x">
-                                <label for="subject" class="form-label" style="font-weight: 600">Subject </label>
-                                <input class="form-control" type="text" name="subject"
-                                    placeholder="I'd love to treat you">
-                            </div>
-                            <div class="mb-3 input-group-x">
-                                <label for="description" class="form-label" style="font-weight: 600">Description
-                                </label>
-                                <textarea class="form-control" rows="5" name="description"
-                                    placeholder="Not too expensive though :D"></textarea>
-                            </div>
-                            <button class="btn btn-lg mt-2 w-100" type="submit">SEND MESSAGE</button>
-                        </fieldset>
-                    </form>
                 </div>
             </div>
         </div>
