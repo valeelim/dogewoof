@@ -7,7 +7,3 @@ class ContactUs(models.Model):
     date = models.DateField(blank=False, default=datetime.datetime.now().strftime(('%Y-%m-%d')))
     subject = models.CharField(max_length=255)
     description = models.TextField()
-
-class Donation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.IntegerField()

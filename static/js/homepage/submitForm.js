@@ -1,15 +1,3 @@
-const formatNumber = number => {
-    console.log(number)
-    number = String(number)
-    let formatted_string = ''
-    for (let i = 0; i < number.length; i++) {
-        if (i % 3 == number.length % 3 && i)
-            formatted_string += ','
-        formatted_string += number[i]
-    }
-    return formatted_string
-}
-
 $(document).ready(() => {
     $('#contact-form').submit(function(e) {
         e.preventDefault()
@@ -38,26 +26,6 @@ $(document).ready(() => {
                     </div>
                 `)
                 $('#toast').toast('show')
-                form.trigger('reset')
-            }
-        })
-    })
-
-    $('#donation-form').submit(function(e) {
-        e.preventDefault()
-
-        let form = $(this)
-        let actionUrl = form.attr('action')
-        console.log($('#total-donation h1 strong')[0].textContent)
-
-        $.ajax({
-            type: 'POST',
-            url: actionUrl,
-            data: form.serialize(),
-            success: resp => {
-                let e = '#total-donation h1 strong'
-                let value = parseInt($(e)[0].textContent.replaceAll(',', '')) + resp.donated_amount
-                $(e).text(formatNumber(value))
                 form.trigger('reset')
             }
         })
