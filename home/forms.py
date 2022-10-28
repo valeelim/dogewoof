@@ -1,6 +1,4 @@
-from socket import fromshare
 from django import forms
-from .models import Donation
 
 class DonationForm(forms.Form):
     amount = forms.IntegerField(label='', max_value=999999999)
