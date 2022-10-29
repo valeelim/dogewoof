@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Profile</title>
+{% endblock meta %}
+
+
+{% block content %}
+
+{% include 'partials/navbar.html' %}
+
+
+{% load static %}
+<div class="container rounded bg-white mt-5 mb-5" style="background: rgb(255,0,139);
+background: linear-gradient(90deg, rgb(255, 145, 0) 0%, rgb(255, 145, 0) 100%);">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{{user.profile.image.url}}"><span class="font-weight-bold">{{user.username}}</span><span class="text-black-50">{{user.email}}</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <h1 class="card-title mb-5" style="color:black" font-weight: bold">{{user.username}}'s profile page</h1>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="mb-3 input-group-x">
+                            <label for="username" class="form-label" style="font-weight: 600">Username</label>
+                            {{ form.username }}
+                            <div>
+                                {{ form.errors.username }}
+                            </div>
+                        </div>
+                        <div class="mb-3 input-group-x">
+                            <label for="email" class="form-label" style="font-weight: 600">Email</label>
+                            {{ form.email }}
+                            <div>
+                                {{ form.errors.email }}
+                            </div>
+                        </div>
+                        <div class="mb-3 input-group-x">
+                            <label for="image" class="form-label" style="font-weight: 600">Image</label>
+                            {{p_form}}
+                        </div>
+                        <button type="submit" class="mt-3 btn btn-lg" name="submit">Update</button>
+                    </form>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+    
+    <style>
+        .card-title mb-5 {
+            font-family: 'Source Sans Pro', sans-serif;
+            text-align: center;
+            color: rgb(var(--orange))
+        }
+        button[type='submit'] {
+            background-color: rgb(var(--orange)) !important;
+            color: white;
+        }
+        .form-group {
+            width: 50%;
+        }
+        @media (max-width: 990px) {
+            .form-group {
+                width: 100%;
+            }
+        }
+        body {
+        font-family: 'Source Sans Pro', sans-serif;
+        background: rgb(252, 169, 3);
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: rgb(var(--orange))
+        }
+
+        .profile-button {
+            background: rgb(252, 169, 3);
+            box-shadow: none;
+            border: none
+        }
+
+        .profile-button:hover {
+            background: #682773
+        }
+
+        .profile-button:focus {
+            background: #682773;
+            box-shadow: none
+        }
+
+        .profile-button:active {
+            background: #682773;
+            box-shadow: none
+        }
+
+        .back:hover {
+            color: #682773;
+            cursor: pointer
+        }
+
+        .labels {
+            font-size: 11px
+        }
+
+        .add-experience:hover {
+            background: #BA68C8;
+            color: #fff;
+            cursor: pointer;
+            border: solid 1px #BA68C8
+        }
+    </style>
+{% endblock content %}
