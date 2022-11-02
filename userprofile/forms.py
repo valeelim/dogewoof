@@ -15,7 +15,7 @@ class ProfileForm(ModelForm):
         self.fields['address'].required = False
         self.fields['dogtype'].required = False
 
-class TopUpForm(ModelForm):
+class SaldoForm(ModelForm):
     class Meta:
         model = UserProfile
         fields = ['saldo']

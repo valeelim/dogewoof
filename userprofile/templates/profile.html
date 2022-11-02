@@ -3,7 +3,7 @@
 
 
 <head>
-  <title>{% block title %} {{user}} {% endblock title %}</title>
+  <title>{% block title %} {{username}} {% endblock title %}</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link
@@ -218,7 +218,7 @@
       <div class="row align-items-center flex-row-reverse">
         <div class="col-lg-6">
           <div class="about-text go-to">
-            <h3 id="username" class="dark-color" style="margin-top: 100px;">{{user}}</h3>
+            <h3 id="username" class="dark-color" style="margin-top: 100px;">{{username}}</h3>
             <label>BIO</label>
             <p id="profilebio">{{bio}}</p>
             <div class="row about-list">
@@ -250,7 +250,7 @@
               <div class="col-md-6">
                 <div class="media">
                     <label>Username</label>
-                    <p>{{user}}</p>
+                    <p>{{username}}</p>
                   </div>
                 <div class="media">
                   <label>Email</label>
