@@ -1,5 +1,5 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg" id="navBar">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid mt-2">
         <a class="navbar-brand ms-4" href="{% url 'home:index' %}">
             <img src="{% static 'images/title.svg' %}" alt="">
@@ -17,9 +17,6 @@
                     <a class="nav-link -hvr" aria-current="page" href="">SUPPLIES</a>
                 </li>
                 <li class="nav-item me-4">
-                    <a class="nav-link -hvr" aria-current="page" href="{% url 'artikel:show_artikel' %}">ARTICLES</a>
-                </li>
-                <li class="nav-item me-4">
                     <a class="nav-link -hvr" aria-current="page" href="">FORUM</a>
                 </li>
                 <div class="vr mx-4" style="width: 3px"></div>
@@ -33,17 +30,17 @@
                 {% else %}
                 <li class="nav-item me-4">
                     <span class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center href=" #" role="button"
+                        <a class="nav-link dropdown-toggle me-4 d-flex align-items-center href=" #" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <span>{{ user.username }}</span>
                         </a>
                         <ul class="dropdown-menu me-5">
                             <li><a class="dropdown-item " href="{% url 'authentication:logout' %}">Logout</a></li>
-                            <li><a class="dropdown-item " href="{% url 'userprofile:show_profile' %}">Profile</a></li>
                         </ul>
                     </span>
                 </li>
                 {% endif %}
+
             </ul>
         </div>
     </div>
@@ -95,11 +92,11 @@
             margin: 0 !important;
         }
 
-        li.me-4,
-        #navBar li.me-auto {
+        li.me-5,
+        li.me-auto {
             margin: 5px 0 !important;
         }
-        #navBar .vr {
+        .vr {
             display: none;
         }
     }

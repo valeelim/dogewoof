@@ -23,6 +23,8 @@ urlpatterns = [
     path('', include('home.urls')),
     path('authentication/', include('authentication.urls')),
     path('profile/', include('userprofile.urls')),
+    path('artikel/', include('artikel.urls')),
+    
 ]
 
 if settings.DEBUG:
