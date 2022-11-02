@@ -12,7 +12,7 @@ import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from dog_market.forms import DogItemForm
+from dog_market.forms import *
 from dog_market.models import DogItem
 
 
@@ -33,20 +33,16 @@ def listing(request):
 def submit_item(request):
 
     if request.method == "POST":
-        form = DogItemForm(request.POST)
+        form = DogItemFormModel(request.POST)
         if form.is_valid():
-            # dogitem = form.save(commit=False)
-            # dogitem.user = request.user
-            # dogitem.save()
             form.save()
-    # form = DogItemForm()
     context = {}
-    context['form']= DogItemForm()
+    context['form']= DogItemFormModel()
 
-    return render(request, "submit_item copy.html", context)
+    return render(request, "submit_item.html", context)
 
 @login_required(login_url='/authentication/login/')
-def submit_item(request):
+def submit_item_alt(request):
 
     if request.method == "POST":
         form = DogItemForm(request.POST)
@@ -56,19 +52,14 @@ def submit_item(request):
                 price = form.cleaned_data["price"],
                 breed = form.cleaned_data["breed"],
                 description = form.cleaned_data["description"],
+                image = form.cleaned_data["image"],
                 user = request.user,
             )
             newitem.save()
 
-    return render(request, "submit_item copy.html", context)
-
-# @login_required(login_url='/authentication/login/')
-# def view_item(request, itemid):
-#     context = {}
-#     return render(request, "view_item.html", context)
-
+    return render(request, "submit_item_alt.html", context)
     
 @login_required(login_url='/authentication/login/')
 def view_item(request, itemid):
-    context = {}
-    return render(request, "view_item.html", context)
+    reqitem = DogItem.objects.get(id=itemid)
+    return render(request, "view_item.html", reqitem)

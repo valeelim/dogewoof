@@ -13,18 +13,17 @@
 <body>
   <div>
     <div class="card" style="padding:100px;">
-      <img src="..." class="card-img-top" alt="...">
+      <img src="{{reqitem.item_title}}" class="card-img-top" alt="Image not provided by seller">
       <div class="card-body">
-        <h5 class="card-title">$TITLE</h5>
-        <p class="card-text">Breed: $BREED</p>
+        <h5 class="card-title">{{reqitem.item_title}}</h5>
+        <p class="card-text">Breed: {{reqitem.breed}}</p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><img class="card-img-top" src="..." alt="Card image cap"></li>
-        <li class="list-group-item">Price: $PRICE</li>
-        <li class="list-group-item">$DESCRIPTION</li>
+        <li class="list-group-item">Price: {{reqitem.price}}</li>
+        <li class="list-group-item">{{reqitem.description}}</li>
       </ul>
       <div class="card-body">
-        <h6>Interested? Contact seller at $EMAIL </a>
+        <h6>Interested? Contact this seller at {{reqitem.user}} </a>
       </div>
     </div>
   </div>

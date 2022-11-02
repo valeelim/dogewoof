@@ -8,7 +8,7 @@ class DogItemForm(forms.Form):
     description = forms.CharField(max_length=256)
     image = forms.ImageField()
 
-class DogItemForm(forms.ModelForm):
+class DogItemFormModel(forms.ModelForm):
     class Meta:
         model = DogItem
         exclude = ['user']
