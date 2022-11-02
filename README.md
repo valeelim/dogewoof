@@ -1,5 +1,7 @@
 # Dogewoof :dog:
 
+![deskripsi](https://github.com/valeelim/dogewoof/actions/workflows/dpl.yml/badge.svg)
+
 ## Link to the site
 
 Site can be accessed [here](https://dogewoof.herokuapp.com/)
