@@ -14,7 +14,7 @@ def index(request):
         'form': form
     })
 
-@login_required
+@login_required(login_url='/authentication/login/')
 def contactUs(request):
     if request.method == 'POST':
         newContactUs = ContactUs(
@@ -26,7 +26,7 @@ def contactUs(request):
         return JsonResponse({'message': 'success'})
     return render(request, 'index.html', {})
 
-@login_required
+@login_required(login_url='/authentication/login/')
 def makeDonation(request):
     if request.method == 'POST':
         form = DonationForm(request.POST)
