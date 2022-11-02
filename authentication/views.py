@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from .forms import RegisterForm
 
+
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -35,3 +36,6 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('authentication:login'))
     response.delete_cookie('username')
     return response
+
+
+
