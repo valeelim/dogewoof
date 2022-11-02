@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Item Details</title>
+{% endblock meta %}
+
+{% block content %}
+<header>
+  {% include 'partials/navbar.html' %}
+</header>
+
+<body>
+  <div>
+    <div class="card" style="padding:100px;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">$TITLE</h5>
+        <p class="card-text">Breed: $BREED</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><img class="card-img-top" src="..." alt="Card image cap"></li>
+        <li class="list-group-item">Price: $PRICE</li>
+        <li class="list-group-item">$DESCRIPTION</li>
+      </ul>
+      <div class="card-body">
+        <h6>Interested? Contact seller at $EMAIL </a>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock content %}

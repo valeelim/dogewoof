@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Browse Dogs</title>
+{% endblock meta %}
+
+{% block content %}
+<header>
+    {% include 'partials/navbar.html' %}
+</header>
+<body>
+    <div>
+        <h1 class="card-title mb-5" style="font-weight: bold">Find your ideal dog here!</h1>
+    </div>
+    <div>
+        <h2 style="font-weight: bold">Or, <a href="">post your own listing</a></h2>
+    </div>
+
+    <div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h5 class="card-text">PRICE</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="TOLONG DIISI" class="btn btn-primary">View Details</a>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                    {% for item in all %}
+                    <td>
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="..." alt="Card image cap">
+                            <div class="card-body">
+                              <h5 class="card-title">{{item.item_title}}</h5>
+                              <h5 class="card-text">{{item.price}}</h5>
+                              <p class="card-text">{{item.description}}</p>
+                              <a href="TOLONG DIISI" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </td>
+                    {% endfor %}
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        
+    </div>
+
+</body>
+{% endblock content %}
