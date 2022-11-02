@@ -42,3 +42,4 @@ def makeDonation(request):
             })
     return HttpResponseRedirect(reverse('home:index'))
             
+

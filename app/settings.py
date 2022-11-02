@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'fontawesomefree',
     'home',
-    'authentication'
+    'authentication',
+    'artikel',
 ]
 
 MIDDLEWARE = [
