@@ -1,272 +1,241 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block meta %}
 <title>DogeWoof</title>
+<link rel="stylesheet" href="{% static 'css/homepage/style.css' %}">
 {% endblock meta %}
 
 
 {% block content %}
+
 <header>
     <figure class="d-flex justify-content-center align-items-center">
         <div class="headline text-center mx-3">
             <div class="headline1">
                 Find Your Loyal Companion Here
             </div>
-            <div class="headline2 mt-1">
-                or give them a
-                <img src="{% static 'images/bone.svg' %}" alt="">
-            </div>
+            <a href="#donation">
+                <div class="headline2 mt-1">
+                    or send them a 
+                    <img src="{% static 'images/homepage/bone.svg' %}" alt="">
+                </div>
+            </a>
         </div>
     </figure>
     {% include 'partials/navbar.html' %}
 </header>
+
 <section class="d-flex justify-content-center align-items-center" color: white;
     style="width: 100%; background-color: rgb(var(--dark-gray))">
-    <div class="my-5 navbox d-flex justify-content-between align-items-center flex-wrap">
+    <div class="my-5 navbox d-flex justify-content-between align-items-center flex-wrap text-light">
         <a class="navbox-item" href="#popular-breeds">
-            <img src="{% static 'images/navbox/dog-muted.svg' %}" alt="" style="transform: scale(.8)">
-            <span class="pb-4">Popular Breeds</span>
+            <img src="{% static 'images/homepage/navbox/dog-muted.svg' %}" alt="" style="transform: scale(.8)">
+            <span class="pb-4">POPULAR BREEDS</span>
         </a>
-        <a class="navbox-item" href="">
-            <img src="{% static 'images/navbox/food-muted.svg' %}" alt="" style="transform: scale(.8)">
-            <span class="pb-4">Popular Items</span>
+        <a class="navbox-item" href="#popular-items">
+            <img src="{% static 'images/homepage/navbox/food-muted.svg' %}" alt="" style="transform: scale(.8)">
+            <span class="pb-4">POPULAR ITEMS</span>
         </a>
-        <a class="navbox-item" href="">
-            C
+        <a class="navbox-item" href="#contact-us">
+            <img src="{% static 'images/homepage/navbox/phone-book.svg' %}" alt="" style="transform: scale(.7)">
+            <span class="pb-4">CONTACT US</span>
         </a>
     </div>
 </section>
-<section id="popular-breeds" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="mt-5" style="font-size: 3em">
+
+<section id="popular-breeds" class="d-flex flex-column justify-content-center align-items-center mt-5">
+    <div style="font-size: 3em">
         <span class="text-align">
             POPULAR <strong>BREEDS</strong>
         </span>
     </div>
-    <div id="breed-grid" class="d-flex justify-content-around flex-wrap align-items-center mt-5"
+    <div id='breed-grid' class="d-flex justify-content-around flex-wrap align-items-center mt-5"
         style="max-width: 1000px">
         <div class="c-breed m-2">
-            <img src="{% static 'images/dogs/husky.svg' %}" alt="" style="transform: scale(.6)">
+            <img src="{% static 'images/homepage/dogs/husky.svg' %}" alt="" style="transform: scale(.6)">
             <span class="mb-4 pb-3">Husky</span>
         </div>
         <div class="c-breed m-2">
-            <img src="{% static 'images/dogs/bulldog.svg' %}" alt="" style="transform: scale(.6)">
+            <img src="{% static 'images/homepage/dogs/bulldog.svg' %}" alt="" style="transform: scale(.6)">
             <span class="mb-4 pb-3">Bulldog</span>
         </div>
         <div class="c-breed m-2">
-            <img src="{% static 'images/dogs/germanshepherd.svg' %}" alt="" style="transform: scale(.6)">
+            <img src="{% static 'images/homepage/dogs/germanshepherd.svg' %}" alt="" style="transform: scale(.6)">
             <span class="mb-4 pb-3">German Shepherd</span>
         </div>
         <div class="c-breed m-2">
-            <img src="{% static 'images/dogs/poodle.svg' %}" alt="" style="transform: scale(.6)">
+            <img src="{% static 'images/homepage/dogs/poodle.svg' %}" alt="" style="transform: scale(.6)">
             <span class="mb-4 pb-3">Poodles</span>
         </div>
         <div class="c-breed m-2">
-            <img src="{% static 'images/dogs/shihtzu.svg' %}" alt="" style="transform: scale(.6)">
+            <img src="{% static 'images/homepage/dogs/shihtzu.svg' %}" alt="" style="transform: scale(.6)">
             <span class="mb-4 pb-3">Shih Tzu</span>
         </div>
         <div class="c-breed m-2">
-            <img src="{% static 'images/dogs/pom.svg' %}" alt="" style="transform: scale(.6)">
+            <img src="{% static 'images/homepage/dogs/pom.svg' %}" alt="" style="transform: scale(.6)">
             <span class="mb-4 pb-3">Pomeranians</span>
         </div>
         <div class="c-breed m-2">
-            <img src="{% static 'images/dogs/chihuahua.svg' %}" alt="" style="transform: scale(.6)">
+            <img src="{% static 'images/homepage/dogs/chihuahua.svg' %}" alt="" style="transform: scale(.6)">
             <span class="mb-4 pb-3">Chihuahua</span>
         </div>
         <div class="c-breed m-2">
-            <img src="{% static 'images/dogs/chowchow.svg' %}" alt="" style="transform: scale(.6)">
+            <img src="{% static 'images/homepage/dogs/chowchow.svg' %}" alt="" style="transform: scale(.6)">
             <span class="mb-4 pb-3">Chow Chow</span>
         </div>
     </div>
+    <button class="navButton navButton-dark my-5">
+        VIEW ALL BREEDS
+    </button>
 </section>
-<section id="popular-items">
 
+<section id="popular-items" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="mt-5" style="font-size: 3em">
+        <span class="text-align" style="color: white">
+            FEATURED <strong>ITEMS</strong>
+        </span>
+    </div>
+    <div id='featured-grid' class="d-flex justify-content-around flex-wrap align-items-center my-5"
+        style="max-width: 1200px">
+        <div class="f-item card m-3" style="width: 250px;">
+            <img src="{% static 'images/homepage/dummy.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+            </div>
+        </div>
+        <div class="f-item card m-3" style="width: 250px;">
+            <img src="{% static 'images/homepage/dummy.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+            </div>
+        </div>
+        <div class="f-item card m-3" style="width: 250px;">
+            <img src="{% static 'images/homepage/dummy.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+            </div>
+        </div>
+        <div class="f-item card m-3" style="width: 250px;">
+            <img src="{% static 'images/homepage/dummy.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+            </div>
+        </div>
+    </div>
+    <button class="navButton mb-5">
+        VIEW ALL ITEMS
+    </button>
 </section>
-<footer>
 
+<section id="donation" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="mt-5 text-center" style="font-size: 3em">
+        <span>
+            LEND A <strong>HELPING HAND</strong>
+        </span>
+    </div>
+    <article class="card p-5 mt-4 d-flex flex-column align-items-center justify-content-center">
+        <h1>Donation Received</h1>
+        <div id="total-donation">
+            <h1>
+                Rp<strong>{{ total_donation|intcomma }}</strong>
+            </h1>
+        </div>
+        <hr style="margin: 3px; border-top: 2px solid white" class="w-100">
+        <div>
+            <form id='donation-form' action="{% url 'home:make_donation' %}" method="post" class="d-flex flex-column align-items-center justify-content-center">
+                {% csrf_token %}
+                <fieldset>
+                    <div>
+                        {{ form }}
+                    </div>
+                    <button class='navButton mt-3' type="submit">
+                        {% if user.is_authenticated %}
+                        MAKE A DIFFERENCE
+                        {% else %}
+                        LOGIN FIRST
+                        {% endif %}
+                    </button>
+                </fieldset>
+            </form>
+        </div>
+    </article>
+</section>
+
+<section id="contact-us" class="d-flex justify-content-center align-items-center mt-5 pt-5">
+    <div class="card mb-3 w-75" style="border: none">
+        <h1 class="card-title mb-5 text-center" style="font-weight: bold">HAVE A QUESTION ?</h1>
+        <div class="row g-0">
+            <div class="col-lg-6 d-flex align-items-center">
+                <img src="{% static 'images/homepage/mail.jpg' %}" class="img-fluid rounded-start"
+                    style="object-fit: cover;">
+            </div>
+            <div class="form-group col-lg-6">
+                <div class="card-body">
+                    <form id='contact-form' method="POST" action="{% url 'home:contact_us' %}">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="mb-3 input-group-x">
+                                <label for="subject" class="form-label" style="font-weight: 600">Subject </label>
+                                <input class="form-control" type="text" name="subject"
+                                    placeholder="I'd love to treat you">
+                            </div>
+                            <div class="mb-3 input-group-x">
+                                <label for="description" class="form-label" style="font-weight: 600">Description
+                                </label>
+                                <textarea class="form-control" rows="5" name="description"
+                                    placeholder="Not too expensive though :D"></textarea>
+                            </div>
+                            <button class="btn btn-lg mt-2 w-100" type="submit">SEND MESSAGE</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<figure id="footer-wave"></figure>
+
+<footer class="d-flex flex-column justify-content-center align-items-center w-100">
+    <div class='logo-container d-flex justify-content-between' style="max-width: 200; height: 50px">
+        <img style="width: 40px; margin: 10px" src="{% static 'images/homepage/footer/facebook.svg' %}" alt="">
+        <img style="width: 40px; margin: 10px" src="{% static 'images/homepage/footer/instagram.svg' %}" alt="">
+        <img style="width: 40px; margin: 10px" src="{% static 'images/homepage/footer/pinterest.svg' %}" alt="">
+        <img style="width: 40px; margin: 10px" src="{% static 'images/homepage/footer/twitter.svg' %}" alt="">
+    </div>
+    <hr style="color: white; margin: 3px; border-top: 3px solid white" class="w-50">
+    <nav class="navbar-expand-lg p-0">
+        <div class="container-fluid">
+            <div>
+                <ul class="navbar-nav w-100 mb-2 mb-lg-0" style="font-size: 1.1rem; font-weight: 700">
+                    <li class="nav-item me-4">
+                        <a class="nav-link" aria-current="page" href="">DOG MARKETPLACE</a>
+                    </li>
+                    <li class="nav-item me-4">
+                        <a class="nav-link" aria-current="page" href="">SUPPLIES</a>
+                    </li>
+                    <li class="nav-item me-4">
+                        <a class="nav-link" aria-current="page" href="{% url 'artikel:show_artikel' %}">ARTICLES</a>
+                    </li>
+                    <li class="nav-item me-4">
+                        <a class="nav-link" aria-current="page" href="">FORUM</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </footer>
 
-<style>
-    header {
-        width: 100%;
-        height: 100vh;
-    }
+<script src="{% static 'js/homepage/gsap_script.js' %}"></script>
+<script src="{% static 'js/homepage/submitForm.js' %}"></script>
+{% if not user.is_authenticated %}
+<script src="{% static 'js/homepage/disableForm.js' %}"></script>
+{% endif %}
 
-    figure {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        background-image: url("{% static 'images/homepage.jpg' %}");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center bottom;
-    }
-
-    .headline {
-        position: relative;
-        max-width: 1000px;
-        font-family: 'Open Sans', sans-serif;
-    }
-
-    .headline1 {
-        font-size: 4em;
-        font-weight: 700;
-        color: white;
-        color: rgb(var(--dark-gray))
-    }
-
-    .headline2 {
-        color: white;
-        background-color: rgb(var(--orange));
-        border: none;
-        color: white;
-        text-align: center;
-        display: inline-block;
-        cursor: pointer;
-        border-radius: 10px;
-        padding: 10px 30px;
-        font-weight: 600;
-        font-size: 2em;
-    }
-
-    .headline2:hover {
-        transform: scale(1.05);
-        transition: transform .2s ease-in-out;
-    }
-
-    .headline2:hover img {
-        transform: rotate(45deg);
-        transition: transform .2s ease-in-out;
-    }
-
-    .navbox {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 700px;
-        cursor: pointer;
-    }
-
-    .navbox-item {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 200px;
-        height: 200px;
-        border: 2px solid;
-        border-radius: 10px;
-        border-color: rgba(255, 255, 255, .2);
-        background-color: transparent;
-        color: white;
-        padding: 15px;
-        text-decoration: none;
-        font-weight: 600;
-        color: rgba(255, 255, 255, .6);
-    }
-
-    .navbox-item:hover {
-        color: white;
-        background-color: rgb(var(--orange));
-    }
-
-    .navbox-item:hover img {
-        filter: brightness(300%) !important;
-    }
-
-    .basic-grid {
-        width: 100%;
-        max-width: 1000px;
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-
-    .c-breed {
-        height: 200px;
-        width: 200px;
-        color: black;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        font-weight: 600;
-    }
-
-    .c-breed:hover {
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    }
-
-    footer {
-        height: 30vh;
-    }
-
-    @media (max-width: 694px) {
-        .headline1 {
-            font-size: 3em;
-            top: -100px
-        }
-
-        .navbox {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .navbox .navbox-item:nth-child(2) {
-            margin: 1rem 0;
-        }
-    }
-</style>
-
-<script>
-    gsap.registerPlugin(ScrollTrigger)
-
-    gsap.fromTo($('.headline')[0], {
-        opacity: 0,
-        yPercent: 200
-    }, {
-        opacity: 1,
-        yPercent: 0,
-        duration: 1.5,
-        scrollTrigger: {
-            trigger: $('figure'),
-            start: '45% center',
-        }
-    })
-
-    gsap.fromTo('.navbox-item', {
-        opacity: 0,
-        xPercent: -50
-    }, {
-        opacity: 1,
-        xPercent: 0,
-        duration: .3,
-        stagger: {
-            each: .2
-        },
-        scrollTrigger: {
-            start: 'top bottom',
-            trigger: $('.navbox'),
-            toggleActions: "restart reverse restart reverse"
-        }
-    })
-
-    gsap.fromTo('.c-breed', {
-        opacity: 0,
-        yPercent: -25
-    }, {
-        opacity: 1,
-        yPercent: 0,
-        stagger: {
-            each: .05
-        },
-        scrollTrigger: {
-            start: 'top center',
-            trigger: $('#breed-grid'),
-            toggleActions: "restart reverse restart reverse"
-        }
-    })
-</script>
 {% endblock content %}
