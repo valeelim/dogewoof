@@ -39,7 +39,7 @@
             myElement.append(`
                 <div class="card col-sm-4 mb-1 mt-4 mx-auto" style="width: 18rem;">
                   <div class="card-body">
-                    <h4 class="card-title text-light text-center fw-semibold">${data[i].fields.title}</h4>
+                    <h4 class="card-title text-dark text-center fw-semibold">${data[i].fields.title}</h4>
                     <hr>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">Rp ${data[i].fields.price}</li>
@@ -53,8 +53,7 @@
                   </div>
                   <div class="card-footer text-center">
                     <p style="font-weight:bold; color:${color};">${message}</p>
-                    <button type="button" class="btn btn-dark" style="float:left;"><a class="text-light" href="ubah-status/${data[i].pk}" style="text-decoration:solid ">Add Favorite</a></button>
-                    <button type="button" class="btn btn-dark" style="float:right;"><a class="text-light" href=" hapus-task/${data[i].pk}" style="text-decoration:solid ">Delete Task</a></button>
+                    <button type="button" class="btn btn-dark" style="float:middle;"><a class="text-light" href="ubah-status/${data[i].pk}" style="text-decoration:solid ">Add Favorite</a></button>
                   </div>
                 </div>
             `)
@@ -78,14 +77,14 @@
           transition: 0.4s;
           width: 40%;    
           border-radius: 5px;
-          background-color: rgb(var(--orange));
+          background-color: rgb(240, 136, 92);  
       }
         
       .card:hover {
       border-radius: 40px;
       transform: scale(1.05);
       box-shadow: 0 10px 20px rgba(23, 21, 23, 0), 0 4px 8px rgba(27, 21, 28, 0.06); 
-      background-color: rgb(240, 136, 92); 
+      background-color: rgb(var(--orange));
       color: white;  
       }
       .container {
@@ -110,11 +109,159 @@
         background-attachment: fixed;
       }
 
+      .newcontainer1 {
+        padding: 90px 86px;
+        }
+
+      .coll-lg-4, .coll-lg-6, .coll-lg-8, .coll-lg-12{
+        margin-top: 10px;
+      }
+      .thumbnail-atas{
+        width: 100%;
+        height: 455px;
+        box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+      }
+      .thumbnail{
+        width: 100%;
+        height: 260px;
+        box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+      }
+      .box-element{
+        box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 10px;
+      }
+
+      .latest {
+        padding-bottom: 55px;
+      }
+    
+      .newcontainer {
+          width: 100%;
+          padding-right: 15px;
+          padding-left: 15px;
+          margin-right: auto;
+          margin-left: auto;
+      }
+      
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+      }
+      
+      .col, .col-6, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-4, .col-sm-6, .col-xl-5 {
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+      
+      .section-title {
+        margin-bottom: 45px;
+        text-align: center;
+      }
+      
+      .blog__item {
+        margin-bottom: 45px;
+      }
+      .blog__item__pic {
+        height: 270px;
+      }
+      
+      .blog__item__text {
+        padding: 30px 30px 25px;
+        margin: 0 30px;
+        margin-top: -35px;
+        background: #fff;
+        transition: all , .3s;
+      }
+      
+      .set-bg {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top center;
+      }
     </style>
   </head>
-  
-<!-- Spacing after Navbar -->
-  <h1 style="margin-top:7px; padding-top: 90px; padding-bottom:15px ;font-size: 40px;" class="font-monospace fw-semibold text-center"></h1>
+
+
+<!-- Spacing & Background after Navbar -->
+<h4 style="margin-top:7px; padding-top: 35px; padding-bottom:0px ;font-size: 40px;" class="font-monospace fw-semibold text-center"></h4>
+  <div class="row row-cols-1 row-cols-md-4 g-4 md:justify-end gap-4">
+    <div class="col-lg-4">
+      <img class="thumbnail-atas" src="{% static 'images/supplies/bg-atas.png' %}">
+    </div>
+  </div>
+
+<!-- Top Supplies Content -->
+  <h4 style="margin-top:7px; padding-top: 30px; padding-bottom:0px ;font-size: 40px;" class="font-monospace fw-semibold text-center">Top Supplies</h4>
+  <div class="container-fluid">
+		<br>
+			<div class="row row-cols-1 row-cols-md-4 g-4 md:justify-end gap-4">
+        
+      <div class="row row-cols-1 row-cols-md-4 g-4 md:justify-end gap-4">
+				<div class="col-lg-4">
+					<img class="thumbnail" src="{% static 'images/supplies/product1.jpg' %}">
+					<div class="box-element product">
+						<h6><strong>True Touch Glove</strong></h6>
+            <hr>
+            <h6> These gloves help you to remove dead hair that is in between the feathers easily and to keep the house clean from pet that falls out.</h6>
+						<hr>
+            <p>&#11088 &#11088 &#11088 &#11088</p>
+						<a class="btn btn-outline-success" href="#">View</a>
+						<h4 style="display: inline-block; float: right; font-size: 20px">Rp21.000</h4>
+					</div> 
+				</div>
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-4 g-4 md:justify-end gap-4">
+				<div class="col-lg-4">
+					<img class="thumbnail" src="{% static 'images/supplies/product4.jpg' %}">
+					<div class="box-element product">
+						<h6><strong>Dog Necklace</strong></h6>
+            <hr>
+            <h6>Making your dog look fashionable and stylish, these necklace are specially designed so that they are looks cool and stunning. </h6>
+						<hr>
+            <p>&#11088 &#11088 &#11088 &#11088 &#11088</p>
+						<a class="btn btn-outline-success" href="#">View</a>
+						<h4 style="display: inline-block; float: right; font-size: 20px" width ="20px">Rp23.821</h4>
+					</div> 
+				</div>
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-4 g-4 md:justify-end gap-4">
+				<div class="col-lg-4">
+					<img class="thumbnail" src="{% static 'images/supplies/product3.jpg' %}">
+					<div class="box-element product">
+						<h6><strong>Moe Marking Manners Belt XS</strong></h6>
+            <hr>
+            <h6>Due to the different monitor and light effect, the actual color might be slightly different from the color showed on the pictures. Thank you!</h6>
+						<hr>
+            <p>&#11088 &#11088 &#11088 &#11088 &#11088</p>
+						<a class="btn btn-outline-success" href="#">View</a>
+						<h4 style="display: inline-block; float: right ; font-size: 20px">Rp50.000</h4>
+					</div> 
+				</div>
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-4 g-4 md:justify-end gap-4">
+				<div class="col-lg-4">
+					<img class="thumbnail" src="{% static 'images/supplies/product2.jpg' %}">
+					<div class="box-element product">
+						<h6><strong>Pet Cargo</strong></h6>
+						<hr>
+            <h6>Made of strong and hygienic plastic without having to worry about rust. So don't worry about your pet's safety while being taken away. </h6>
+            <hr>
+            <p>&#11088 &#11088 &#11088 &#11088</p>
+            <a class="btn btn-outline-success" href="#">View</a>
+						<h4 style="display: inline-block; float: right; font-size: 20px">Rp170.000</h4>
+					</div> 
+				</div>	
+      </div>	
+  </div>
 
 <!-- Navigation Bar -->
   <header>
@@ -128,6 +275,9 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item" style="margin: 5px;">
               <a class="btn btn-dark" data-bs-toggle="modal" href="#addProduct" role="button">Add Product</a>
+            </li>
+            <li class="nav-item" style="margin: 5px;">
+              <a class="btn btn-dark" href="{% url 'home:index' %}" role="button">Home</a>
             </li>
             <li class="nav-item" style="margin: 5px;">
               <a class="btn btn-dark" href="{% url 'home:index' %}" role="button">Logout</a>
@@ -154,7 +304,7 @@
                   <input type="text" name="title" id="title">
                 </tr>
                 <tr>
-                  <label>Price (ex: 100000)</label>
+                  <label>Price (ex: 100.000)</label>
                   <input type="textarea" name="price" id="price">
                 </tr>
                 <tr>
@@ -179,7 +329,12 @@
     </div>
   </div>
 
+  <!-- New Supplies -->
+  <h4 style="margin-top:7px; padding-top: 90px; padding-bottom:0px ;font-size: 30px;" class="font-monospace fw-semibold text-center">New Supplies</h4>
+
   <!-- Product Content that have been added by user -->
-  <div class="row row-cols-1 row-cols-md-3 g-4  gap-4 vh-200" id="main-div"></div>
+  <div class="row row-cols-1 row-cols-md-3 g-4  gap-4 vh-200" id="main-div">
+
 
  {% endblock content %}
+

@@ -30,19 +30,16 @@ def show_json(request):
  
 def add_product(request):
     if request.method == 'POST':
-        title = request.POST.get('title')
-        price = request.POST.get('price')
-        description = request.POST.get('description')
-        contact = request.POST.get('contact')
-        new_task = Product(
-            title=title, 
-            price=price, 
-            description=description,
-            contact=contact, 
-            user=request.user,
-        )
-        new_task.save()
-    return redirect('supplies:show_supplies')
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # Get the current instance object to display in the template
+            img_obj = form.instance
+            return render(request, 'supplies.html', {'form': form, 'img_obj': img_obj})
+        else:
+            form = ProductForm()
+    return render(request, 'supplies.html', {'form': form})        
+
 
 def ubah_status(request, id):
     data = Product.objects.get(pk=id) 

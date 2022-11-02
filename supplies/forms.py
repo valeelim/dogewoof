@@ -1,7 +1,8 @@
 from django import forms
+from .models import Product
+
 
 class ProductForm(forms.Form):
-    task_title = forms.CharField(label="Title")
-    task_price = forms.CharField(label="Price", widget=forms.Textarea)
-    task_description = forms.CharField(label="Description", widget=forms.Textarea)
-    task_contact = forms.CharField(label="Contact", widget=forms.Textarea)
+    class Meta:
+        model = Product
+        field = ('title', 'image', 'price', 'description', 'contact',)

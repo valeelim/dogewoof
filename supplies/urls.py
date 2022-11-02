@@ -12,4 +12,5 @@ urlpatterns = [
     path('add/', add_product, name='add_product'),
     path('ubah-status/<int:id>', ubah_status, name='ubah_status'),
     path('hapus-task/<int:id>', hapus_task, name='hapus_task'),
+
 ]
