@@ -6,61 +6,165 @@
 
 
 {% block content %}
-
 {% include 'partials/navbar.html' %}
-
-
 {% load static %}
-<div class="container rounded bg-white mt-5 mb-5" style="background: rgb(255,0,139);
-background: linear-gradient(90deg, rgb(255, 145, 0) 0%, rgb(255, 145, 0) 100%);">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{{user.profile.image.url}}"><span class="font-weight-bold">{{user.username}}</span><span class="text-black-50">{{user.email}}</span><span> </span></div>
-        </div>
-        <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
-                <h1 class="card-title mb-5" style="color:black" font-weight: bold">{{user.username}}'s profile page</h1>
-                    <form method="POST" action="">
-                        {% csrf_token %}
-                        <div class="mb-3 input-group-x">
-                            <label for="username" class="form-label" style="font-weight: 600">Username</label>
-                            {{ form.username }}
-                            <div>
-                                {{ form.errors.username }}
-                            </div>
-                        </div>
-                        <div class="mb-3 input-group-x">
-                            <label for="email" class="form-label" style="font-weight: 600">Email</label>
-                            {{ form.email }}
-                            <div>
-                                {{ form.errors.email }}
-                            </div>
-                        </div>
-                        <div class="mb-3 input-group-x">
-                            <label for="image" class="form-label" style="font-weight: 600">Image</label>
-                            {{p_form}}
-                        </div>
-                        <button type="submit" class="mt-3 btn btn-lg" name="submit">Update</button>
-                    </form>
+
+
+
+
+<div class="container inner-container">
+    <div class="row shadow bg-white rounded-lg p-3">
+        <div class="col-md-2">
+            <div class="nav col nav-pills cols-sm-12 mr-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a href="#tab1" class="nav-link rounded-pill shadow mb-3 mr-3 col-sm-12 active text-center" id="web-tab" data-toggle="pill" role="tab" aria-controls="web-tab" aria-selected="true">Profile</a>
+                <a href="#tab2" class="nav-link rounded-pill shadow mb-3 mr-3 col-sm-12 text-center" id="seo-tab" data-toggle="pill" role="tab" aria-controls="seo-tab" aria-selected="true">Cart</a>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+        <div class="col-md-10">
+            <div class="tab-content" id="v-pills-tabContent" role="tablist" aria-orientation="vartical">
+                <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="web-tab">
+                    <div class="row">
+                        
+                        <div class="col-md-3">
+                            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-10" width="150px" src="{{user.profile.image.url}}"><span class="font-weight-bold" style="color: grey">{{user.username}}</span><span style="color: grey">{{user.email}}</span><span> </span></div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="p-3 px-5">
+                                <h1 class="card-title " style=" color: grey;" font-weight: bold">{{user.username}}'s profile page</h1>
+                                <p id="profilebio"> Bio : {{bio}}</p>
+                                <div class="row about-list">
+                                    <div class="col-md-6">
+                                      <div class="media">
+                                        <label>Saldo</label>
+                                        <p>Rp{{saldo}}</p>
+                                      </div>
+                                      <div class="media">
+                                        <label>Phone</label>
+                                        <p id="profilebirthday">{{phone}}</p>
+                                      </div>
+                                      <button 
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#modalprofile"
+                                      role="button" 
+                                      class="btn btn-outline-primary"
+                                      
+                                      >Primary</button>
+      
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="seo-tab">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-10" width="150px" src="{{user.profile.image.url}}"><span class="font-weight-bold" style="color: grey">{{user.username}}</span><span style="color: grey">{{user.email}}</span><span> </span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
-    
+
+<div
+    class="modal fade"
+    id="modalprofile"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Save changes</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            method="POST"
+            action="{% url 'users:edit_profile'%}"
+            enctype="multipart/form-data"
+            id="profileform"
+            data-url="{% url 'users:edit_profile'%}"
+          >
+            {% csrf_token %} 
+            <table>
+            {{form1.as_table}}
+            </table>
+            <br />
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button e="submit" id="submitBtn" class="btn btn-primary">
+              Save changes
+            </button>
+          </form>
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}
+  <script>
+    $(document).ready(function () {
+      $("profile").on("submit", function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+          method: "POST",
+          url: $("#profileform").data("url"),
+          data: formData,
+          processData: false,
+          contentType: false,
+
+          success: function () {
+            alert("Data Successfully Posted");
+            $.ajax({
+              method: "GET",
+              url: "{% url 'users:show_json' %}",
+
+              success: function (response) {
+                console.log(response)
+                $("#modalprofile").modal('hide');
+                $("#profilepicture").attr("src", response[0].fields.picture);
+                if (response[0].fields.bio != null){
+                  $("#profilebio").empty();
+                  $("#profilebio").html(response[0].fields.bio);
+                }
+
+                if (response[0].fields.phone != null){
+                  $("#profilephone").empty();
+                $("#profilephone").html(response[0].fields.phone);
+                }
+                
+                
+              },
+            });
+          },
+        });
+      });
+
+    });
+  </script>
+
     <style>
-        .card-title mb-5 {
-            font-family: 'Source Sans Pro', sans-serif;
-            text-align: center;
-            color: rgb(var(--orange))
+        .card-title {
+            border-radius: 25px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            text-align: left;
+            margin-bottom: 10px;
+            
         }
         button[type='submit'] {
             background-color: rgb(var(--orange)) !important;
@@ -76,9 +180,8 @@ background: linear-gradient(90deg, rgb(255, 145, 0) 0%, rgb(255, 145, 0) 100%);"
         }
         body {
         font-family: 'Source Sans Pro', sans-serif;
-        background: rgb(252, 169, 3);
         }
-
+        
         .form-control:focus {
             box-shadow: none;
             border-color: rgb(var(--orange))
@@ -120,4 +223,3 @@ background: linear-gradient(90deg, rgb(255, 145, 0) 0%, rgb(255, 145, 0) 100%);"
             border: solid 1px #BA68C8
         }
     </style>
-{% endblock content %}

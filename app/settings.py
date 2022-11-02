@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'home',
     'authentication',
-    'users',
+    'userprofile',
 ]
 
 MIDDLEWARE = [
@@ -139,8 +139,10 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-MEDIA_URL = '/images/'
+MEDIA_ROOT = ''
+
+MEDIA_URL = ''
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 for directory in [*STATICFILES_DIRS, STATIC_ROOT]:

@@ -1,9 +1,10 @@
+
 from django.apps import AppConfig
 
 
-class UsersConfig(AppConfig):
+class UserprofileConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'users'
+    name = 'userprofile'
 
     def ready(self):
-        import users.signals
+        import userprofile.signals
