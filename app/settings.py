@@ -46,8 +46,13 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'home',
     'authentication',
+<<<<<<< HEAD
+    'supplies'
+
+=======
     'userprofile',
     'artikel'
+>>>>>>> ea380f9f81c5719c2faab9e8e6d88c40852de658
 ]
 
 MIDDLEWARE = [
