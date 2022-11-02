@@ -21,6 +21,7 @@ def mainpage(request):
     }
     return render(request, "mainpage.html", context)
 
+@login_required(login_url='/authentication/login/')
 def input_question(request):
     form = Form(request.POST)
 
