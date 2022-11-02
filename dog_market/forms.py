@@ -7,6 +7,7 @@ class DogItemForm(forms.Form):
     breed = forms.CharField(max_length=16)
     description = forms.CharField(max_length=256)
     image = forms.ImageField()
+    contact = forms.CharField(max_length=32)
 
 class DogItemFormModel(forms.ModelForm):
     class Meta:

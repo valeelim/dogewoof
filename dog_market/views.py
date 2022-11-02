@@ -52,6 +52,7 @@ def submit_item_alt(request):
                 price = form.cleaned_data["price"],
                 breed = form.cleaned_data["breed"],
                 description = form.cleaned_data["description"],
+                contact = form.cleaned_data["contact"],
                 image = form.cleaned_data["image"],
                 user = request.user,
             )
