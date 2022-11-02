@@ -20,7 +20,7 @@
                     <a class="nav-link -hvr" aria-current="page" href="{% url 'artikel:show_artikel' %}">ARTICLES</a>
                 </li>
                 <li class="nav-item me-4">
-                    <a class="nav-link -hvr" aria-current="page" href="">FORUM</a>
+                    <a class="nav-link -hvr" aria-current="page" href="{% url 'faq:mainpage' %}">FAQ</a>
                 </li>
                 <div class="vr mx-4" style="width: 3px"></div>
                 {% if not user.is_authenticated %}

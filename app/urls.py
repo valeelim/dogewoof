@@ -24,7 +24,7 @@ urlpatterns = [
     path('authentication/', include('authentication.urls')),
     path('profile/', include('userprofile.urls')),
     path('artikel/', include('artikel.urls')),
-    
+    path('faq/', include('faq.urls')),
 ]
 
 if settings.DEBUG:
