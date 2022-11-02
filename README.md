@@ -33,5 +33,5 @@ Modul yang berisi berbagai anjing yang akan dijual.
 ### Modul Marketplace Peralatan
 Modul yang berisi berbagai peralatan anjing yang akan dijual.
 
-### Modul Forum
-Modul yang berisi forum diskusi sesama penjual untuk saling berbagi informasi mengenai produk anjing yang dijual.
+### Modul FAQ
+Modul yang berisi Frequently Asked Question, pertanyaan-pertanyaan penjual yang ingin ditanyakan kepada satu sama lain.
