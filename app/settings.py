@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'userprofile',
     'artikel',
     'faq',
+    'supplies',
 ]
 
 MIDDLEWARE = [

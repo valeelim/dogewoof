@@ -1,5 +1,7 @@
 # Dogewoof :dog:
 
+![deskripsi](https://github.com/valeelim/dogewoof/actions/workflows/dpl.yml/badge.svg)
+
 ## Link to the site
 
 Site can be accessed [here](https://dogewoof.herokuapp.com/)
@@ -33,5 +35,5 @@ Modul yang berisi berbagai anjing yang akan dijual.
 ### Modul Marketplace Peralatan
 Modul yang berisi berbagai peralatan anjing yang akan dijual.
 
-### Modul Forum
-Modul yang berisi forum diskusi sesama penjual untuk saling berbagi informasi mengenai produk anjing yang dijual.
+### Modul FAQ
+Modul yang berisi Frequently Asked Question, pertanyaan-pertanyaan penjual yang ingin ditanyakan kepada satu sama lain.

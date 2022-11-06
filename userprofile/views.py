@@ -1,7 +1,7 @@
 import os
 from django.shortcuts import render
 from userprofile.models import UserProfile
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, JsonResponse
+from django.http import HttpResponse
 from django.core import serializers
 from userprofile.forms import *
 from django.contrib.auth.decorators import login_required
@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-@login_required(login_url='/autentikasi')
+@login_required(login_url='/authentication/login')
 def show_profile(request):
 
     user_data = UserProfile.objects.get(user=request.user)
@@ -29,7 +29,7 @@ def show_profile(request):
         phone = "-"
 
     context = {
-        'user' : request.user.username,
+        'username' : request.user.username,
         'picture' : user_data.picture,
         'bio' : bio,
         'address' : address,
@@ -38,15 +38,10 @@ def show_profile(request):
         'phone' : phone,
         'email' : request.user.email,
         'form1' : ProfileForm,
-        'form2' : TopUpForm,
+        'form2' : SaldoForm,
     }
     
     return render(request, 'profile.html', context)
-
-@login_required(login_url='/autentikasi')
-def show_topup(request):
-
-    return render(request, 'topup.html')
 
 def edit_profile(request):
     profile = request.user.userprofile
@@ -78,23 +73,14 @@ def edit_profile(request):
     
 
 def edit_saldo(request):
-    user = request.user.userprofile
     if request.POST:
         new_saldo = request.POST['saldo']
-        print(f'new saldo {new_saldo}')
         user_data = UserProfile.objects.get(user=request.user)
-        print(f'user saldo {user_data.saldo}')
-
         user_data.saldo += int(new_saldo)
-
         user_data.save()
-            
-        return HttpResponseRedirect('/profile')
-            # if obj.saldo:
-            #     obj.save(update_fields=['saldo'])
 
-            
-
+        return HttpResponse("success")
+  
 def show_json(request):
     profileobj = UserProfile.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", profileobj), content_type="application/json")
