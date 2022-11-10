@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'fontawesomefree',
     'home',
     'authentication',
+    'dog_market',
     'userprofile',
     'artikel',
     'faq',

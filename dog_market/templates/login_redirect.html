@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Login Redirect</title>
+{% endblock meta %}
+
+{% block content %}
+<header>
+    {% include 'partials/navbar.html' %}
+</header>
+<body>
+    <h1>You need to be logged as a registered user to view this page</h1>
+    <h1>Redirecting. . .</h1>
+</body>
+{% endblock content %}
