@@ -29,6 +29,7 @@ SECRET_KEY = 'django-insecure-vfm%b-k&z@yh88xdje36yvp9*fy1502)8m1lgwv(c9g43epcv+
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://dogewoof.up.railway.app']
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
@@ -147,7 +148,7 @@ MEDIA_ROOT = ''
 
 MEDIA_URL = ''
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 for directory in [*STATICFILES_DIRS, STATIC_ROOT]:
     directory.mkdir(exist_ok=True)
