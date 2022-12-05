@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.core import serializers
 from django.db.models import Sum
 from .models import ContactUs, Donation
 from .forms import DonationForm
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 def index(request):
     form = DonationForm()
@@ -26,6 +29,7 @@ def contactUs(request):
         return JsonResponse({'message': 'success'})
     return render(request, 'index.html', {})
 
+@csrf_exempt
 @login_required(login_url='/authentication/login/')
 def makeDonation(request):
     if request.method == 'POST':
@@ -41,5 +45,19 @@ def makeDonation(request):
                 'donated_amount': amount
             })
     return HttpResponseRedirect(reverse('home:index'))
-            
+
+def getDonation(request):
+    donationSum = Donation.objects.aggregate(Sum('amount'))
+    return JsonResponse({
+        'total': donationSum,
+    })
+
+def getAllDonations(request):
+    data = []
+    for obj in Donation.objects.all().order_by('-amount'):
+        data.append({
+            "username": str(obj.user), 
+            "amount": int(obj.amount)
+        })
+    return JsonResponse(data, safe=False)
 
