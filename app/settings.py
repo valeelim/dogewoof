@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'corsheaders'
+    'corsheaders',
     'fontawesomefree',
     'home',
     'authentication',
