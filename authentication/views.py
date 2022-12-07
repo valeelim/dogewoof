@@ -24,15 +24,22 @@ def login_user(request):
             }, status=401)
     return render(request, 'login.html', {})
 
+@csrf_exempt
 def register_user(request):
     form = RegisterForm()
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
+            print('yay')
             form.save()
-            return redirect('authentication:login')
-        else:
-            return render(request, 'register.html', {'form': form})
+            return JsonResponse({
+                "status": True,
+                'message': 'User successfully registered',
+            }, status=200)
+        return JsonResponse({
+            "status": False,
+            'message': 'Something went wrong',
+        }, status=400)
     context = {'form': form}
     return render(request, 'register.html', context)
 
