@@ -30,12 +30,11 @@ def show_json(request):
  
 def add_product(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
+        form = ProductForm(request.user, request.POST)
         if form.is_valid():
             form.save()
             # Get the current instance object to display in the template
-            img_obj = form.instance
-            return render(request, 'supplies.html', {'form': form, 'img_obj': img_obj})
+            return render(request, 'supplies.html', {'form': form})        
         else:
             form = ProductForm()
     return render(request, 'supplies.html', {'form': form})        
