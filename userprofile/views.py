@@ -11,18 +11,19 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-def show_profile(request):
+def show_profile(request, pk):
 
-    data = []
     for obj in UserProfile.objects.all():
-        data.append({
-            'username' :str(obj.user),
-            'bio' : str(obj.bio),
-            'address' :  str(obj.address),
-            'dogtype' :  str(obj.dogtype),
-            'saldo' :  int(obj.saldo),
-            'phone' :  str(obj.phone),
-        })
+        if pk == str(obj.user):
+            data = {
+                'username' :str(obj.user),
+                'bio' : str(obj.bio),
+                'address' :  str(obj.address),
+                'dogtype' :  str(obj.dogtype),
+                'saldo' :  int(obj.saldo),
+                'phone' :  str(obj.phone),
+            }
+            
     return JsonResponse(data, safe=False)
 
 
