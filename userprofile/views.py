@@ -31,7 +31,6 @@ def show_profile(request):
 
     context = [{
         'username' : request.user.username,
-        'picture' : user_data.picture,
         'bio' : bio,
         'address' : address,
         'dogtype' : dogtype,
