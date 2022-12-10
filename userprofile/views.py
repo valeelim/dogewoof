@@ -2,6 +2,7 @@ import os
 from django.shortcuts import render
 from userprofile.models import UserProfile
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.core import serializers
 from userprofile.forms import *
 from django.contrib.auth.decorators import login_required
@@ -28,7 +29,7 @@ def show_profile(request):
     if phone == None:
         phone = "-"
 
-    context = {
+    context = [{
         'username' : request.user.username,
         'picture' : user_data.picture,
         'bio' : bio,
@@ -37,11 +38,9 @@ def show_profile(request):
         'saldo' : user_data.saldo,
         'phone' : phone,
         'email' : request.user.email,
-        'form1' : ProfileForm,
-        'form2' : SaldoForm,
-    }
+    }]
     
-    return render(request, 'profile.html', context)
+    return JsonResponse({'context':context})
 
 def edit_profile(request):
     profile = request.user.userprofile
