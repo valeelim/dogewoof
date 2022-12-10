@@ -10,36 +10,21 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-@login_required(login_url='/authentication/login')
+
 def show_profile(request):
 
-    user_data = UserProfile.objects.get(user=request.user)
+    data = []
+    for obj in UserProfile.objects.all():
+        data.append({
+            'username' :str(obj.user),
+            'bio' : str(obj.bio),
+            'address' :  str(obj.address),
+            'dogtype' :  str(obj.dogtype),
+            'saldo' :  int(obj.saldo),
+            'phone' :  str(obj.phone),
+        })
+    return JsonResponse(data, safe=False)
 
-    address = user_data.address
-    bio = user_data.bio
-    phone = user_data.phone
-    dogtype = user_data.dogtype
-
-    if bio == None:
-        bio = "-"
-
-    if address == None:
-        address = "-"
-
-    if phone == None:
-        phone = "-"
-
-    context = [{
-        'username' : request.user.username,
-        'bio' : bio,
-        'address' : address,
-        'dogtype' : dogtype,
-        'saldo' : user_data.saldo,
-        'phone' : phone,
-        'email' : request.user.email,
-    }]
-    
-    return JsonResponse({'context':context})
 
 def edit_profile(request):
     profile = request.user.userprofile
