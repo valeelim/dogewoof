@@ -18,19 +18,19 @@ from django.urls import reverse
 @login_required(login_url='/authentication/login/')
 
 def show_supplies(request):
-    data = Product.objects.filter(user=request.user).all()
+    data = Product.objects.all()
     context = {
         'data_product': data,
     }
     return render(request, 'supplies.html', context)
     
 def show_json(request):
-    data = Product.objects.filter(user=request.user)
+    data = Product.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
  
 def add_product(request):
     if request.method == 'POST':
-        form = ProductForm(request.user, request.POST)
+        form = ProductForm( request.POST)
         if form.is_valid():
             form.save()
             # Get the current instance object to display in the template
