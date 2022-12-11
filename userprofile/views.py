@@ -2,6 +2,7 @@ import os
 from django.shortcuts import render
 from userprofile.models import UserProfile
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.core import serializers
 from userprofile.forms import *
 from django.contrib.auth.decorators import login_required
@@ -9,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-@login_required(login_url='/authentication/login')
+@login_required(login_url='/authentication/login/')
 def show_profile(request):
 
     user_data = UserProfile.objects.get(user=request.user)
@@ -30,18 +31,17 @@ def show_profile(request):
 
     context = {
         'username' : request.user.username,
-        'picture' : user_data.picture,
         'bio' : bio,
+        'image' : user_data.picture.url,
         'address' : address,
         'dogtype' : dogtype,
         'saldo' : user_data.saldo,
         'phone' : phone,
         'email' : request.user.email,
-        'form1' : ProfileForm,
-        'form2' : SaldoForm,
     }
     
-    return render(request, 'profile.html', context)
+    
+    return JsonResponse({'data':context})
 
 def edit_profile(request):
     profile = request.user.userprofile
