@@ -8,9 +8,10 @@ class ProductForm(forms.Form):
     description = forms.CharField(max_length=250)
     contact = forms.CharField(max_length=280)
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
         super(ProductForm, self).__init__(*args, **kwargs)
 
     def save(self):
-        Product(title=self.cleaned_data['title'], price=self.cleaned_data['price'], description=self.cleaned_data['description'], contact=self.cleaned_data['contact']).save()
+        Product(user=self.user, title=self.cleaned_data['title'], price=self.cleaned_data['price'], description=self.cleaned_data['description'], contact=self.cleaned_data['contact']).save()
 
