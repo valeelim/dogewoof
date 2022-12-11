@@ -30,24 +30,23 @@ def show_json(request):
  
 def add_product(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
+        form = ProductForm(request.user, request.POST)
         if form.is_valid():
             form.save()
             # Get the current instance object to display in the template
-            img_obj = form.instance
-            return render(request, 'supplies.html', {'form': form, 'img_obj': img_obj})
+            return render(request, 'supplies.html', {'form': form})        
         else:
             form = ProductForm()
     return render(request, 'supplies.html', {'form': form})        
 
 
-def ubah_status(request, id):
-    data = Product.objects.get(pk=id) 
-    if (not data.is_finished):
-        data.is_finished = True
-    data.save()
-    return redirect('supplies:show_supplies')
+# def ubah_status(request, id):
+#     data = Product.objects.get(pk=id) 
+#     if (not data.is_finished):
+#         data.is_finished = True
+#     data.save()
+#     return redirect('supplies:show_supplies')
 
-def hapus_task(request, id):
-    Product.objects.get(pk=id).delete()
-    return redirect('supplies:show_supplies')
+# def hapus_task(request, id):
+#     Product.objects.get(pk=id).delete()
+#     return redirect('supplies:show_supplies')

@@ -32,11 +32,9 @@
       
         function update(data) {
           const myElement = $("#main-div")
-          myElement.html('');
+          $("#main-div").html('');
           for (let i = 0; i < data.length; i++) {
-            let message = (data[i].fields.is_finished) ? 'Your favorite':'Add to Favorite?';
-            let color = (data[i].fields.is_finished) ? 'white':'black';
-            myElement.append(`
+            $("#main-div").append(`
                 <div class="card col-sm-4 mb-1 mt-4 mx-auto" style="width: 18rem;">
                   <div class="card-body">
                     <h4 class="card-title text-dark text-center fw-semibold">${data[i].fields.title}</h4>
@@ -50,18 +48,13 @@
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">${data[i].fields.contact} </li>
                     </ul>
-                  </div>
-                  <div class="card-footer text-center">
-                    <p style="font-weight:bold; color:${color};">${message}</p>
-                    <button type="button" class="btn btn-dark" style="float:middle;"><a class="text-light" href="ubah-status/${data[i].pk}" style="text-decoration:solid ">Add Favorite</a></button>
-                  </div>
                 </div>
             `)
           }
         }
       
         function fetchData() {
-          $.get("/supplies/json", update)
+          $.get("/supplies/json/", update)
         }
       
         $(document).ready(() => {
@@ -211,7 +204,7 @@
             <h6> These gloves help you to remove dead hair that is in between the feathers easily and to keep the house clean from pet that falls out.</h6>
 						<hr>
             <p>&#11088 &#11088 &#11088 &#11088</p>
-						<a class="btn btn-outline-success" href="#">View</a>
+						<a class="btn btn-outline-success" href="#">Add to Favorite</a>
 						<h4 style="display: inline-block; float: right; font-size: 20px">Rp21.000</h4>
 					</div> 
 				</div>
@@ -333,7 +326,7 @@
   <h4 style="margin-top:7px; padding-top: 90px; padding-bottom:0px ;font-size: 30px;" class="font-monospace fw-semibold text-center">New Supplies</h4>
 
   <!-- Product Content that have been added by user -->
-  <div class="row row-cols-1 row-cols-md-3 g-4  gap-4 vh-200" id="main-div">
+  <div class="row row-cols-1 row-cols-md-3 g-4  gap-4 vh-200" id="main-div"></div>
 
 
  {% endblock content %}

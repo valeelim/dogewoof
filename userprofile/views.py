@@ -2,14 +2,16 @@ import os
 from django.shortcuts import render
 from userprofile.models import UserProfile
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.core import serializers
 from userprofile.forms import *
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 
 
 # Create your views here.
-@login_required(login_url='/authentication/login')
+@login_required(login_url='/authentication/login/')
 def show_profile(request):
 
     user_data = UserProfile.objects.get(user=request.user)
@@ -30,31 +32,27 @@ def show_profile(request):
 
     context = {
         'username' : request.user.username,
-        'picture' : user_data.picture,
         'bio' : bio,
+        'image' : user_data.picture.url,
         'address' : address,
         'dogtype' : dogtype,
         'saldo' : user_data.saldo,
         'phone' : phone,
         'email' : request.user.email,
-        'form1' : ProfileForm,
-        'form2' : SaldoForm,
     }
     
-    return render(request, 'profile.html', context)
+    
+    return JsonResponse({'data':context})
 
+@csrf_exempt
+@login_required(login_url='/authentication/login/')
 def edit_profile(request):
     profile = request.user.userprofile
     if request.POST:
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
-
-        print(form.is_valid())
+        form = ProfileForm(request.POST, instance=profile)
 
         if form.is_valid() :
             obj = form.save(commit=False)
-
-            if obj.picture:
-                obj.save(update_fields=['picture'])
 
             if obj.bio:
                 obj.save(update_fields=['bio'])
@@ -67,11 +65,18 @@ def edit_profile(request):
 
             if obj.dogtype:
                 obj.save(update_fields=['dogtype'])
-            
-            
-            return HttpResponse("success")
-    
 
+            return JsonResponse({
+                'bio': obj.bio,
+                'phone': obj.phone,
+                'address': obj.address,
+                'dogtype': obj.dogtype,
+            })
+            
+    return HttpResponse("success")
+    
+@csrf_exempt
+@login_required(login_url='/authentication/login/')
 def edit_saldo(request):
     if request.POST:
         new_saldo = request.POST['saldo']
@@ -79,7 +84,11 @@ def edit_saldo(request):
         user_data.saldo += int(new_saldo)
         user_data.save()
 
-        return HttpResponse("success")
+        return JsonResponse({
+                'saldo': new_saldo,
+            })
+
+    return HttpResponse("success")
   
 def show_json(request):
     profileobj = UserProfile.objects.filter(user=request.user)
