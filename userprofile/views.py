@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.core import serializers
 from userprofile.forms import *
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -43,18 +44,15 @@ def show_profile(request):
     
     return JsonResponse({'data':context})
 
+@csrf_exempt
+@login_required(login_url='/authentication/login/')
 def edit_profile(request):
     profile = request.user.userprofile
     if request.POST:
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
-
-        print(form.is_valid())
+        form = ProfileForm(request.POST, instance=profile)
 
         if form.is_valid() :
             obj = form.save(commit=False)
-
-            if obj.picture:
-                obj.save(update_fields=['picture'])
 
             if obj.bio:
                 obj.save(update_fields=['bio'])
@@ -67,9 +65,15 @@ def edit_profile(request):
 
             if obj.dogtype:
                 obj.save(update_fields=['dogtype'])
+
+            return JsonResponse({
+                'bio': obj.bio,
+                'phone': obj.phone,
+                'address': obj.address,
+                'dogtype': obj.dogtype,
+            })
             
-            
-            return HttpResponse("success")
+    return HttpResponse("success")
     
 
 def edit_saldo(request):
