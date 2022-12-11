@@ -12,6 +12,8 @@ import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from django.core import serializers
+
 from dog_market.forms import *
 from dog_market.models import DogItem
 
@@ -64,3 +66,10 @@ def submit_item_alt(request):
 def view_item(request, itemid):
     reqitem = DogItem.objects.get(id=itemid)
     return render(request, "view_item.html", reqitem)
+
+def getlisting(request):
+    data = DogItem.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def getproduct(request):
+    return HttpResponse
