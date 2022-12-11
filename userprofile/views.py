@@ -75,7 +75,8 @@ def edit_profile(request):
             
     return HttpResponse("success")
     
-
+@csrf_exempt
+@login_required(login_url='/authentication/login/')
 def edit_saldo(request):
     if request.POST:
         new_saldo = request.POST['saldo']
@@ -83,7 +84,11 @@ def edit_saldo(request):
         user_data.saldo += int(new_saldo)
         user_data.save()
 
-        return HttpResponse("success")
+        return JsonResponse({
+                'saldo': new_saldo,
+            })
+
+    return HttpResponse("success")
   
 def show_json(request):
     profileobj = UserProfile.objects.filter(user=request.user)
