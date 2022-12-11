@@ -9,4 +9,4 @@ class Product(models.Model):
     price = models.CharField(max_length=250, null=True, blank=True)
     description = models.TextField(max_length=250, null=True, blank=True)
     contact = models.CharField(max_length=280, null=True, blank=True)
-    is_finished = models.BooleanField(default=False)
+    # is_finished = models.BooleanField(default=False)

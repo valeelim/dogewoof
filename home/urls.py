@@ -8,4 +8,5 @@ urlpatterns = [
     path('make-donation/', views.makeDonation, name='make_donation'),
     path('get-donation-sum/', views.getDonation, name='get_donation_sum'),
     path('get-all-donations/', views.getAllDonations, name='get_all_donations'),
+    path('get-contact-us/', views.getContactUs, name='get_contact_us'),
 ]
