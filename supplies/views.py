@@ -25,7 +25,7 @@ def show_supplies(request):
     return render(request, 'supplies.html', context)
     
 def show_json(request):
-    data = Product.objects.filter(user=request.user).all()
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
  
 def add_product(request):
