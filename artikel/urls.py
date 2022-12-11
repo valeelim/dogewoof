@@ -9,6 +9,6 @@ urlpatterns = [
     path('model-json/',get_model_json, name='get_model_json'),
     path('', show_dog_list, name='show_artikel'),
     path('get-dog-detail/<id>/', get_dog_detail, name="get_dog_detail" ),
-    path('get-dog-detail-json/<str:id>/', get_dog_detail_json, name="get_dog_detail_json" )
+    path('get-dog-detail-json/', get_dog_detail_json, name="get_dog_detail_json" )
 
 ]
