@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>ARTICLE</title>
+
+{% endblock meta %}
+
+{% block content %}
+<header>
+    {% include 'partials/navbarartikel.html' %}
+</header>
+
+<body>
+    <section class="container" id="dog-list">
+
+    </section>
+</body>
+
+<script>
+    window.onload = showDogList()
+    async function getDogJson(){
+        const data = await fetch("{% url 'artikel:get_model_json' %}").then((res) => res.json());
+        return data
+    }
+
+    async function showDogList(){
+        const body = await getDogJson()
+        document.getElementById("dog-list").innerHTML = ""
+        htmlDocument = ""
+        body.forEach((item) =>{
+                htmlDocument += `
+                <div class="card" id=${item.pk}>
+                    <img class="card-image" src="{% static 'images/${item.fields.image}' %}"></img>
+                    <h2 class="card-title">${item.fields.name}</h2>
+                    <p class="card-body">${item.fields.first_description}</p>
+                    <a href="/artikel/get-dog-detail/${item.pk}/" class="button" id=${item.pk}>READ MORE</a>
+                </div>
+                `
+            }) 
+        document.getElementById("dog-list").innerHTML = htmlDocument
+
+    }
+</script>
+
+<style>
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        background: rgb(0,155, 155)
+    }
+    
+    .container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+   .card {
+    background: white;
+    width: 270px;
+    margin: 10px;
+    border-radius: 15px;
+    
+   }
+
+   .card-image {
+    height: 170px;
+    margin-bottom: 15px;
+    background-size: cover;
+    border-radius: 15px 15px 0 0; 
+   }
+
+   .card h2 {
+    padding: 10px;
+    text-align: center;
+   }
+   .card p {
+    padding: 10px;
+   }
+   .card a{
+    background-color: black;
+    color: white;
+    padding: 15px 20px;
+    display: block;
+    text-align: center;
+     margin: 20px 50px;
+     text-decoration: none;
+   }
+   .card:hover{
+    background-color: rgb(62,62,62);
+    color: white;
+    cursor: pointer;
+    transform: scale(1.03);
+    transition: all 1s ease;
+   }
+   .card a:hover{
+    background-color: white;
+    color: blue;
+   }
+
+
+   /* .dog-1 {
+    background-image: url("{% static 'images/husky.jpg' %}");
+   }
+   .dog-2 {
+    background-image: url("{% static 'images/bulldog.jpg' %}");
+   }
+   .dog-3 {
+    background-image: url("{% static 'images/german shepherd.jpg' %}");
+   }
+   .dog-4 {
+    background-image: url("{% static 'images/poodles.jpg' %}");
+   }
+   .dog-5 {
+    background-image: url("{% static 'images/shih tzu.jpg' %}");
+   }
+   .dog-6 {
+    background-image: url("{% static 'images/pomeranians.jpg' %}");
+   }
+   .dog-7 {
+    background-image: url("{% static 'images/chihuahua.jpeg' %}");
+   }
+   .dog-8 {
+    background-image: url("{% static 'images/chowchow.jpg' %}");
+   } */
+</style>
+
+{% endblock content %}
