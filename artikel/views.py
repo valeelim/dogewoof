@@ -43,9 +43,14 @@ def post_flutter(request) :
         return JsonResponse({
             "messages" : "succes"
         })
+    return JsonResponse(data, safe=False)
+    #dog_object = DogDescription.objects.all()
+    #return HttpResponse(serializers.serialize("json", dog_object), content_type="application/json")
+
 
 def show_dog_list(request) :
     return render(request, "show_dog_list.html")
+
 
 def get_dog_detail_json(request, id) :
     data = DogDescription.objects.get(pk=int(id))
@@ -55,11 +60,22 @@ def get_dog_detail_json(request, id) :
         "first_description" : data.first_description,
         "secont_description" : data.secont_description,
         "funfact" : data.funfact,
-        "user" : data.user,
+        #"user" : data.user,
     }
     return JsonResponse({
         "data":data_values
     })
+
+def get_dog_detail_json(request) :
+    data = []
+    for obj in DogDescription.objects.all():
+        data.append({
+            "secont_description": str(obj.secont_description),
+            "url": str(obj.image.url),
+            "funfact": str(obj.funfact)
+        })
+    return JsonResponse(data, safe=False)
+
     #dog_object = DogDescription.objects.get(pk = int(id))
     #return HttpResponse(serializers.serialize("json", [dog_object]), content_type="application/json")
 
