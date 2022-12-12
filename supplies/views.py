@@ -13,6 +13,7 @@ from django.core import serializers
 
 from django.http import HttpResponseRedirect 
 from django.urls import reverse 
+from django.views.decorators.csrf import csrf_exempt
 
 
 @login_required(login_url='/authentication/login/')
@@ -23,11 +24,13 @@ def show_supplies(request):
         'data_product': data,
     }
     return render(request, 'supplies.html', context)
-    
+
+@csrf_exempt    
 def show_json(request):
     data = Product.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
  
+@csrf_exempt 
 def add_product(request):
     if request.method == 'POST':
         form = ProductForm( request.POST)
@@ -38,15 +41,3 @@ def add_product(request):
         else:
             form = ProductForm()
     return render(request, 'supplies.html', {'form': form})        
-
-
-# def ubah_status(request, id):
-#     data = Product.objects.get(pk=id) 
-#     if (not data.is_finished):
-#         data.is_finished = True
-#     data.save()
-#     return redirect('supplies:show_supplies')image.png
-
-# def hapus_task(request, id):
-#     Product.objects.get(pk=id).delete()
-#     return redirect('supplies:show_supplies')
