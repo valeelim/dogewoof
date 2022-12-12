@@ -106,7 +106,7 @@ DATABASES = {
 
 if PRODUCTION:	
     DATABASES['default'] = dj_database_url.config(	
-        conn_max_age=600, ssl_require=True	
+        default=DATABASE_URL, conn_max_age=600, ssl_require=True	
     )
 
 
