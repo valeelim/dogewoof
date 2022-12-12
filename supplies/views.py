@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
 from supplies.forms import ProductForm 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 
 from django.http import HttpResponseRedirect 
@@ -40,4 +40,11 @@ def add_product(request):
             return render(request, 'supplies.html', {'form': form})        
         else:
             form = ProductForm()
-    return render(request, 'supplies.html', {'form': form})        
+    return render(request, 'supplies.html', {'form': form})  
+ 
+@csrf_exempt      
+def add(request):
+    if request.method == 'POST':
+        Product(title=request.POST.get('title'), price=request.POST.get('price'), description=request.POST.get('description'), contact=request.POST.get('contact')).save()
+        return JsonResponse({'message': 'success'})
+    return render(request, "create.html")
