@@ -37,12 +37,11 @@ def input_question(request):
     context = {'form':form}
     return render(request, "add_question.html", context)
 
-# @csrf_exempt
-# def answer(request):
-#     if request.method == "POST":
-#         data = json.loads(request.body)
-#         question_answer = FAQ(question = data['question'], answer = "")
-#         question_answer.save()
-#     faqs = FAQ.objects.all()
-#     faq_data = json.loads(serializers.serialize('json', faqs))
-#     return JsonResponse(faq_data, safe = False)
+
+def json_forum(request):
+        data = FAQ.objects.all()
+        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+
+
+

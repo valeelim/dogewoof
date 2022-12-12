@@ -67,15 +67,6 @@ def get_dog_detail_json(request, id) :
         "data":data_values
     })
 
-# def get_dog_detail_json(request) :
-#     data = []
-#     for obj in DogDescription.objects.all():
-#         data.append({
-#             "secont_description": str(obj.secont_description),
-#             "url": str(obj.image.url),
-#             "funfact": str(obj.funfact)
-#         })
-#     return JsonResponse(data, safe=False)
 
     #dog_object = DogDescription.objects.get(pk = int(id))
     #return HttpResponse(serializers.serialize("json", [dog_object]), content_type="application/json")
