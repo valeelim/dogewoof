@@ -28,13 +28,14 @@
         const body = await getDogJson()
         document.getElementById("dog-list").innerHTML = ""
         htmlDocument = ""
-        body.forEach((item) =>{
+        body.data.forEach((item) =>{
+            console.log(item.image)
                 htmlDocument += `
-                <div class="card" id=${item.pk}>
-                    <img class="card-image" src="{% static 'images/${item.fields.image}' %}"></img>
-                    <h2 class="card-title">${item.fields.name}</h2>
-                    <p class="card-body">${item.fields.first_description}</p>
-                    <a href="/artikel/get-dog-detail/${item.pk}/" class="button" id=${item.pk}>READ MORE</a>
+                <div class="card" id=${item.id}>
+                    <img class="card-image" src="${item.image}"></img>
+                    <h2 class="card-title">${item.name}</h2>
+                    <p class="card-body">${item.first_description}</p>
+                    <a href="/artikel/get-dog-detail/${item.id}/" class="button" id=${item.id}>READ MORE</a>
                 </div>
                 `
             }) 
