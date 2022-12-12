@@ -34,8 +34,6 @@
           const myElement = $("#main-div")
           $("#main-div").html('');
           for (let i = 0; i < data.length; i++) {
-            let message = (data[i].fields.is_finished) ? 'Your favorite':'Add to Favorite?';
-            let color = (data[i].fields.is_finished) ? 'white':'black';
             $("#main-div").append(`
                 <div class="card col-sm-4 mb-1 mt-4 mx-auto" style="width: 18rem;">
                   <div class="card-body">
@@ -50,11 +48,6 @@
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">${data[i].fields.contact} </li>
                     </ul>
-                  </div>
-                  <div class="card-footer text-center">
-                    <p style="font-weight:bold; color:${color};">${message}</p>
-                    <button type="button" class="btn btn-dark" style="float:middle;"><a class="text-light" href="ubah-status/${data[i].pk}" style="text-decoration:solid ">Add Favorite</a></button>
-                  </div>
                 </div>
             `)
           }
@@ -211,7 +204,7 @@
             <h6> These gloves help you to remove dead hair that is in between the feathers easily and to keep the house clean from pet that falls out.</h6>
 						<hr>
             <p>&#11088 &#11088 &#11088 &#11088</p>
-						<a class="btn btn-outline-success" href="#">View</a>
+						<a class="btn btn-outline-success" href="#">Add to Favorite</a>
 						<h4 style="display: inline-block; float: right; font-size: 20px">Rp21.000</h4>
 					</div> 
 				</div>

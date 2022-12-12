@@ -7,6 +7,7 @@ urlpatterns = [
     path('submit_item/', submit_item, name="submit_item"),
     path('submit_item_alt/', submit_item_alt, name="submit_item_alt"),
     path('view_item/<int:itemid>/', view_item, name="view_item"),
+    path('getlisting/', getlisting, name='getlisting'),
 
     # path('view_item/', view_item, name="view_item"),
 

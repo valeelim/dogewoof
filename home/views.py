@@ -7,6 +7,9 @@ from django.db.models import Sum
 from .models import ContactUs, Donation
 from .forms import DonationForm
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
+from datetime import datetime
+
 import json
 
 def index(request):
@@ -17,11 +20,12 @@ def index(request):
         'form': form
     })
 
-@login_required(login_url='/authentication/login/')
+@csrf_exempt
 def contactUs(request):
     if request.method == 'POST':
         newContactUs = ContactUs(
             user=request.user,
+            date=datetime.now(),
             subject=request.POST.get('subject'),
             description=request.POST.get('description'),
         )
@@ -30,7 +34,19 @@ def contactUs(request):
     return render(request, 'index.html', {})
 
 @csrf_exempt
-@login_required(login_url='/authentication/login/')
+def getContactUs(request):
+    data = []
+    for obj in ContactUs.objects.all():
+        print(obj.date)
+        data.append({
+            'username': str(obj.user),
+            'date': obj.date.strftime("%d %b %Y %I:%M %p"),
+            'subject': obj.subject,
+            'description': obj.description
+        })
+    return JsonResponse(data, safe=False)
+        
+@csrf_exempt
 def makeDonation(request):
     if request.method == 'POST':
         form = DonationForm(request.POST)
