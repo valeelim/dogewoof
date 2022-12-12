@@ -40,55 +40,53 @@
         const body = await getDogJsonDetail()
         document.getElementById("dog-detail").innerHTML = ""
         htmlDocument = ""
-        body.forEach((item) =>{
+        data = body.data
                 htmlDocument += `
                 <div class="card card-1">
-                    <img src="{% static 'images/${item.fields.image}' %}" alt="${item.fields.name}" class="card-img">
+                    <img src="${data.image}" alt="${data.name}" class="card-img">
                     <div class="card-details">
                         <ul>
-                            <li>${item.fields.name}</li>
+                            <li>${data.name}</li>
                             <li>About</li>
                         </ul>
                     </div>
                     <a href="#popup" class="btn">READ MORE</a>
                 </div>
                 <div class="card card-2">
-                    <img src="{% static 'images/${item.fields.image}' %}" alt="${item.fields.name}" class="card-img">
+                    <img src="${data.image}" alt="${data.name}" class="card-img">
                     <div class="card-details">
                         <ul>
-                            <li>${item.fields.name}</li>
+                            <li>${data.name}</li>
                             <li>Fun Fact</li>
                         </ul>
                     </div>
                     <a href="#popup-2" class="btn">READ MORE</a>
                 </div>
                 `
-            }) 
+
         document.getElementById("dog-detail").innerHTML = htmlDocument
 
         document.getElementById("detail-popup1").innerHTML = ""
         htmlDocument = ""
-        body.forEach((item) =>{
                 htmlDocument += `
                     <div class="popup-img">
-                        <img src="{% static 'images/${item.fields.image}' %}">
-                        <img src="{% static 'images/${item.fields.image}' %}">
+                        <img src="${data.image}">
+                        <img src="${data.image}">
                         <a href="#" class="popup-close">&times;</a>
                     </div>
                     <div class="popup-header">
-                        <h1> ${item.fields.name}</h1>
+                        <h1> ${data.name}</h1>
                     </div>
                     <div class="popup-text">
-                        <p>${item.fields.secont_description}</p>
+                        <p>${data.secont_description}</p>
                     </div>
                 `
-        }) 
         document.getElementById("detail-popup1").innerHTML = htmlDocument
 
         document.getElementById("detail-popup2").innerHTML = ""
         htmlDocument = ""
         
-        const funfactList = body[0].fields.funfact
+        const funfactList = data.funfact
         funfactHtml = ""
         for(const key in funfactList){
             funfactHtml += `
@@ -96,24 +94,22 @@
             `
         }
 
-        body.forEach((item) =>{
                 htmlDocument += `
                     <div class="popup-img">
-                        <img src="{% static 'images/${item.fields.image}' %}">
-                        <img src="{% static 'images/${item.fields.image}' %}">
+                        <img src="${data.image}">
+                        <img src="${data.image}">
                         <a href="#" class="popup-close">&times;</a>
                     </div>
                     <div class="popup-header">
-                        <h1> ${item.fields.name} </h1>  
+                        <h1> ${data.name} </h1>  
                     </div>
                     <div class="popup-text">
-                        <p>Fakta Menarik ${item.fields.name}</p>
+                        <p>Fakta Menarik ${data.name}</p>
                         <ul>
                             ${funfactHtml}
                         </ul>
                     </div>
                 `
-        }) 
         document.getElementById("detail-popup2").innerHTML = htmlDocument
     }
 </script>
