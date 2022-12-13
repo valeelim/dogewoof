@@ -44,6 +44,40 @@ def show_profile(request):
     
     return JsonResponse({'data':context})
 
+@login_required(login_url='/authentication/login')
+def show_profilee(request):
+
+    user_data = UserProfile.objects.get(user=request.user)
+
+    address = user_data.address
+    bio = user_data.bio
+    phone = user_data.phone
+    dogtype = user_data.dogtype
+
+    if bio == None:
+        bio = "-"
+
+    if address == None:
+        address = "-"
+
+    if phone == None:
+        phone = "-"
+
+    context = {
+        'username' : request.user.username,
+        'picture' : user_data.picture,
+        'bio' : bio,
+        'address' : address,
+        'dogtype' : dogtype,
+        'saldo' : user_data.saldo,
+        'phone' : phone,
+        'email' : request.user.email,
+        'form1' : ProfileForm,
+        'form2' : SaldoForm,
+    }
+    
+    return render(request, 'profile.html', context)
+
 @csrf_exempt
 @login_required(login_url='/authentication/login/')
 def edit_profile(request):
